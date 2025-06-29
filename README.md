@@ -6,7 +6,7 @@
 
 某不正经小怪物搞出来的启动器🤪
 
-**[Starcloudsea](https://github.com/Starcloudsea) 的作品(要累死我QAQ)**
+**[Rwagsu](https://github.com/Starcloudsea) 的作品(要累死我QAQ)**
 
 **特别鸣谢:
 [Drowned.Get](https://github.com/DrownedGet) |
