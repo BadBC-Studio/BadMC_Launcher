@@ -1,3 +1,9 @@
+> [!NOTE]
+> ## BadMC Launcher 存档了.
+> 由于一些原因, BadMCL 存档, 具体原因我会在一段时间后发布到 [Blog](https://rwagsu.github.io/DrownedDB/blog/) 中.
+> 此次存档不是永久的, 在休整一段时间后会取消存档.
+> 很抱歉了大家 qwq, 但我最近真没多少力气了 QAQ
+
 <div align="center">
 
 <img Height="160" Width="160" src="https://github.com/BadBC-Studio/BadMC_Launcher/blob/Release/BadMC_Launcher/Assets/Icons/appicon_full.png"/>
