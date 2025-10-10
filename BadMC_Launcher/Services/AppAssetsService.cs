@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BadMC_Launcher.Enums;
+using BadMC_Launcher.Models.Enums;
 using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace BadMC_Launcher.Services;
@@ -19,5 +19,5 @@ public class AppAssetsService {
         }
     }
 
-    public Dictionary<MinecraftEntryImageEnum, Lazy<WeakReference<BitmapImage>>> MinecraftImageInstance { get; init; } = new();
+    public Dictionary<MinecraftEntryImageEnum, Lazy<WeakReference<BitmapImage>>> MinecraftImageInstance { get; } = new();
 }

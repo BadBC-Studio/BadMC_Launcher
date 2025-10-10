@@ -1,0 +1,509 @@
+﻿<Page x:Class="BadMC_Launcher.Views.Pages.Settings.ThemeSettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:animations="using:CommunityToolkit.WinUI.Animations"
+      xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+      xmlns:converters="using:CommunityToolkit.WinUI.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:BadMC_Launcher.Views.Pages.Settings"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:BadMC_Launcher.Views.UserControls"
+      xmlns:userConverters="using:BadMC_Launcher.Controls.Converters"
+      mc:Ignorable="d">
+    <Page.Resources>
+        <userConverters:EnumToIndexConverter x:Key="EnumToIndexConverter" />
+        <userConverters:HexToColorConverter x:Key="HexToColorConverter" />
+        <converters:ColorToDisplayNameConverter x:Key="ColorToDisplayNameConverter" />
+
+        <converters:BoolToObjectConverter x:Key="BoolToOpacityConverter"
+                                          FalseValue="0"
+                                          TrueValue="1" />
+
+        <animations:ImplicitAnimationSet x:Name="ShowTransitions">
+            <animations:OffsetAnimation EasingMode="EaseOut"
+                                        From="0,24,0"
+                                        To="0"
+                                        Duration="0:0:0.4" />
+            <animations:OpacityAnimation EasingMode="EaseOut"
+                                         From="0"
+                                         To="1"
+                                         Duration="0:0:0.2" />
+        </animations:ImplicitAnimationSet>
+        <animations:ImplicitAnimationSet x:Name="HideTransitions">
+            <animations:OffsetAnimation EasingMode="EaseOut"
+                                        From="0"
+                                        To="0,24,0"
+                                        Duration="0:0:0.2" />
+            <animations:OpacityAnimation EasingMode="EaseOut"
+                                         From="1"
+                                         To="0"
+                                         Duration="0:0:0.1" />
+        </animations:ImplicitAnimationSet>
+
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="18,12" Spacing="8">
+            <!-- Color Theme setting -->
+            <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_ColorThemeSettingsCard">
+                <!-- Icons -->
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE793;" />
+                </controls:SettingsCard.HeaderIcon>
+
+                <!-- Content -->
+                <controls:Segmented SelectedIndex="{Binding ThemeType, Converter={StaticResource EnumToIndexConverter}, Mode=TwoWay}">
+                    <Interactivity:Interaction.Behaviors>
+                        <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                            <Interactivity:InvokeCommandAction Command="{Binding SetThemeTypeCommand}" />
+                        </Interactivity:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+
+                    <!-- System -->
+                    <controls:SegmentedItem x:Uid="/ViewResources/ThemeSettingsPage_ColorThemes_System">
+                        <controls:SegmentedItem.Icon>
+                            <FontIcon Glyph="&#xE770;" />
+                        </controls:SegmentedItem.Icon>
+                    </controls:SegmentedItem>
+
+                    <!-- Light -->
+                    <controls:SegmentedItem x:Uid="/ViewResources/ThemeSettingsPage_ColorThemes_Light">
+                        <controls:SegmentedItem.Icon>
+                            <FontIcon Glyph="&#xE781;" />
+                        </controls:SegmentedItem.Icon>
+                    </controls:SegmentedItem>
+
+                    <!-- Dark -->
+                    <controls:SegmentedItem x:Uid="/ViewResources/ThemeSettingsPage_ColorThemes_Dark">
+                        <controls:SegmentedItem.Icon>
+                            <FontIcon Glyph="&#xE793;" />
+                        </controls:SegmentedItem.Icon>
+                    </controls:SegmentedItem>
+                </controls:Segmented>
+            </controls:SettingsCard>
+
+            <!-- Accent color setting -->
+            <controls:SettingsExpander x:Uid="/ViewResources/ThemeSettingsPage_AccentColorSettings_Expander">
+                <!-- Icons -->
+                <controls:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xE790;" />
+                </controls:SettingsExpander.HeaderIcon>
+
+                <!-- Items -->
+                <controls:SettingsExpander.Items>
+                    <!-- Accent color Type -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_AccentColorMode_SettingsCard">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE895;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <ComboBox x:Name="AccentColorModeComboBox" SelectedIndex="{Binding AccentColorMode, Converter={StaticResource EnumToIndexConverter}, Mode=TwoWay}">
+                            <!-- System -->
+                            <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_SystemTips">
+                                <StackPanel Padding="0,2"
+                                            Orientation="Horizontal"
+                                            Spacing="6">
+                                    <FontIcon Width="24"
+                                              Height="24"
+                                              VerticalAlignment="Center"
+                                              Glyph="&#xE770;" />
+                                    <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_System"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </ComboBoxItem>
+
+                            <!-- Custom -->
+                            <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_CustomTips">
+                                <StackPanel Padding="0,2"
+                                            Orientation="Horizontal"
+                                            Spacing="6">
+                                    <FontIcon Width="24"
+                                              Height="24"
+                                              VerticalAlignment="Center"
+                                              Glyph="&#xE790;" />
+                                    <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_Custom"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </ComboBoxItem>
+
+                            <!-- ImageMonet -->
+                            <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_ImageMonetTips">
+                                <StackPanel Padding="0,2"
+                                            Orientation="Horizontal"
+                                            Spacing="6">
+                                    <!-- Tip -->
+                                    <userControls:Badge x:Uid="/ViewResources/Global_NotImplemented_Badge" Severity="Error">
+                                        <ToolTipService.ToolTip>
+                                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap">
+                                                <Run x:Uid="/ViewResources/Global_NotImplemented_ToolTipRun" />
+                                                <LineBreak />
+                                                <Run Text="https://github.com/BadBC-Studio/BadMC_Launcher/issues/6" />
+                                            </TextBlock>
+                                        </ToolTipService.ToolTip>
+                                    </userControls:Badge>
+
+                                    <!-- Content -->
+                                    <FontIcon Width="24"
+                                              Height="24"
+                                              VerticalAlignment="Center"
+                                              Glyph="&#xEE71;" />
+                                    <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_ImageMonet"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </ComboBoxItem>
+
+                            <!-- ColorMonet -->
+                            <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_ColorMonetTips">
+                                <StackPanel Padding="0,2"
+                                            Orientation="Horizontal"
+                                            Spacing="6">
+                                    <!-- Tip -->
+                                    <userControls:Badge x:Uid="/ViewResources/Global_NotImplemented_Badge" Severity="Error">
+                                        <ToolTipService.ToolTip>
+                                            <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap">
+                                                <Run x:Uid="/ViewResources/Global_NotImplemented_ToolTipRun" />
+                                                <LineBreak />
+                                                <Run Text="https://github.com/BadBC-Studio/BadMC_Launcher/issues/6" />
+                                            </TextBlock>
+                                        </ToolTipService.ToolTip>
+                                    </userControls:Badge>
+
+                                    <!-- Content -->
+                                    <FontIcon Width="24"
+                                              Height="24"
+                                              VerticalAlignment="Center"
+                                              Glyph="&#xE794;" />
+                                    <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_AccentColorThemes_ColorMonet"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </controls:SettingsCard>
+
+                    <!-- System -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_SystemAccentColor_SettingsCard" Visibility="{x:Bind AccentColorModeToVisibility(viewModel.AccentColorMode, 0), Mode=OneWay}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xEB68;" />
+                        </controls:SettingsCard.HeaderIcon>
+                        <!-- Content -->
+                        <!-- TODO: IMAGE -->
+                    </controls:SettingsCard>
+
+                    <!-- Custom -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_SolidColorAccentColor_SettingsCard" Visibility="{x:Bind AccentColorModeToVisibility(viewModel.AccentColorMode, 1), Mode=OneWay}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE790;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <userControls:ColorPickerButton SelectedColor="{Binding AccentColorHex, Mode=TwoWay, Converter={StaticResource HexToColorConverter}}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Interactivity:EventTriggerBehavior EventName="ColorChanged">
+                                    <Interactivity:InvokeCommandAction Command="{Binding SetAccentColorHexCommand}" />
+                                </Interactivity:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </userControls:ColorPickerButton>
+                    </controls:SettingsCard>
+
+                    <!-- TODO: ImageMonet -->
+                    <!-- ImageMonet -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_ImageMonetAccentColor_SettingsCard" Visibility="{x:Bind AccentColorModeToVisibility(viewModel.AccentColorMode, 2), Mode=OneWay}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xEE71;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="16"
+                                             Height="16"
+                                             Fill="{Binding SelectedImageMonetColor}" />
+                                    <TextBlock Text="{x:Bind ToNoAlphaHex(viewModel.SelectedImageMonetColor.Color), Mode=OneWay}" />
+                                </StackPanel>
+                            </Button.Content>
+
+                            <Button.Flyout>
+                                <Flyout>
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="0" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <StackPanel Width="300"
+                                                MaxHeight="300"
+                                                Margin="16"
+                                                Spacing="8">
+                                        <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_ImageMonetAccentColorSelectTitle_TextBlock" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                        <controls:SwitchPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  TargetType="x:Int32"
+                                                                  Value="{Binding ImageMonetColors.Count}">
+                                            <controls:Case Value="0">
+                                                <StackPanel Grid.Row="1"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
+                                                            animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
+                                                            Spacing="8">
+                                                    <!-- Animation -->
+                                                    <FontIcon HorizontalAlignment="Center"
+                                                              FontSize="40"
+                                                              Glyph="&#xEE71;" />
+                                                    <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_ImageMonetAccentColorsEmptyTitle_TextBlock"
+                                                               HorizontalAlignment="Center"
+                                                               Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                                    <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_ImageMonetAccentColorsEmptySubTitle_TextBlock" HorizontalAlignment="Center" />
+                                                </StackPanel>
+                                            </controls:Case>
+                                            <controls:Case IsDefault="True">
+                                                <GridView x:Name="MonetColorsGridView"
+                                                          animations:Implicit.HideAnimations="{StaticResource HideTransitions}"
+                                                          animations:Implicit.ShowAnimations="{StaticResource ShowTransitions}"
+                                                          ItemsSource="{Binding ImageMonetColors}"
+                                                          SelectedItem="{Binding SelectedImageMonetColor, Mode=TwoWay}">
+                                                    <!-- Styles -->
+                                                    <GridView.ItemContainerStyle>
+                                                        <Style BasedOn="{StaticResource DefaultGridViewItemStyle}" TargetType="GridViewItem">
+                                                            <Setter Property="Margin" Value="4,4,4,4" />
+                                                        </Style>
+                                                    </GridView.ItemContainerStyle>
+
+                                                    <!-- Template -->
+                                                    <GridView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border Width="48"
+                                                                    Height="48"
+                                                                    Margin="2"
+                                                                    Background="{Binding}"
+                                                                    CornerRadius="4"
+                                                                    ToolTipService.ToolTip="{Binding Color, Converter={StaticResource ColorToDisplayNameConverter}}" />
+                                                        </DataTemplate>
+                                                    </GridView.ItemTemplate>
+
+                                                    <!-- SelectionChanged Event -->
+                                                    <Interactivity:Interaction.Behaviors>
+                                                        <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                                                            <Interactivity:InvokeCommandAction Command="{Binding SetMonetAndApplyCommand}" CommandParameter="{Binding SelectedItem, ElementName=MonetColorsGridView}" />
+                                                        </Interactivity:EventTriggerBehavior>
+                                                    </Interactivity:Interaction.Behaviors>
+                                                </GridView>
+                                            </controls:Case>
+                                        </controls:SwitchPresenter>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </controls:SettingsCard>
+
+                    <!-- TODO: ColorMonet -->
+                    <!-- ColorMonet -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_ColorMonetAccentColor_SettingsCard" Visibility="{x:Bind AccentColorModeToVisibility(viewModel.AccentColorMode, 3), Mode=OneWay}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xF354;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <userControls:ColorPickerButton SelectedColor="{Binding MonetColorHex, Mode=TwoWay, Converter={StaticResource HexToColorConverter}}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Interactivity:EventTriggerBehavior EventName="ColorChanged">
+                                    <Interactivity:InvokeCommandAction Command="{Binding SetMonetColorHexCommand}" />
+                                </Interactivity:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </userControls:ColorPickerButton>
+                    </controls:SettingsCard>
+
+                    <!-- MonetPlan -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_MonetPlan_SettingsCard" Visibility="{x:Bind AccentColorModeToVisibility(viewModel.AccentColorMode, 4), Mode=OneWay}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xF133;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <!-- TODO: Monet type -->
+                        <ComboBox PlaceholderText="NOT IMPLEMENTED." />
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+
+                <!-- Content -->
+                <Border Padding="8,4"
+                        Background="{ThemeResource SystemAccentColor}"
+                        CornerRadius="4">
+                    <TextBlock Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                               Text="{Binding ViewAccentColorHex}" />
+                </Border>
+            </controls:SettingsExpander>
+
+            <!-- TODO: Background, WindowName, Language啊啊啊啊啊啊啊啊啊啊!!!!!!!(っ °Д °;)っ -->
+            <!-- Background setting -->
+            <controls:SettingsExpander x:Uid="/ViewResources/ThemeSettingsPage_BackgroundSettings_Expander">
+                <!-- Icons -->
+                <controls:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xE8B9;" />
+                </controls:SettingsExpander.HeaderIcon>
+
+                <!-- Items -->
+                <controls:SettingsExpander.Items>
+                    <!-- StaticImage -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_StaticImage_SelectImageSettingsCard" Visibility="{x:Bind BackgroundTypeToVisibility(viewModel.BackgroundType, 0), Mode=OneWay}">
+                        <!-- Icon -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xEE71;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- TODO: ImagePickerButton -->
+                        <Button>
+                            <!-- Flyout -->
+                            <Button.Flyout>
+                                <Flyout>
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="0" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <StackPanel Width="300"
+                                                MaxHeight="300"
+                                                Margin="16"
+                                                Spacing="8">
+                                        <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_ImageMonetAccentColorSelectTitle_TextBlock" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                        
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                            <!-- Content -->
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon VerticalAlignment="Center" Glyph="&#xEF1F;" />
+                                <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_StaticImage_SelectImageButton"
+                                           VerticalAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                            </StackPanel>
+                        </Button>
+                    </controls:SettingsCard>
+
+                    <!-- SolidColor -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_SolidColor_SelectColorSettingsCard" Visibility="{x:Bind BackgroundTypeToVisibility(viewModel.BackgroundType, 1), Mode=OneWay}">
+                        <!-- Icon -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE790;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <userControls:ColorPickerButton SelectedColor="{Binding SolidColorBackgroundHex, Mode=TwoWay, Converter={StaticResource HexToColorConverter}}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Interactivity:EventTriggerBehavior EventName="ColorChanged">
+                                    <Interactivity:InvokeCommandAction Command="{Binding SetSolidColorBackgroundHexCommand}" />
+                                </Interactivity:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </userControls:ColorPickerButton>
+                    </controls:SettingsCard>
+
+                    <!-- BackgroundStretch -->
+                    <controls:SettingsCard x:Uid="/ViewResources/ThemeSettingsPage_BackgroundStretch_StretchTypeSettingsCard" Visibility="{x:Bind BackgroundTypeToVisibility(viewModel.BackgroundType, 2), Mode=OneWay}">
+                        <!-- Icon -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xEA5F;" />
+                        </controls:SettingsCard.HeaderIcon>
+                    </controls:SettingsCard>
+
+                    <!-- TODO: BackgroundStretchComboBox -->
+                </controls:SettingsExpander.Items>
+
+                <!-- Content -->
+                <ComboBox SelectedIndex="{Binding BackgroundType, Mode=TwoWay, Converter={StaticResource EnumToIndexConverter}}">
+                    <!-- Static image -->
+                    <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_StaticImageTips">
+                        <StackPanel Padding="0,2"
+                                    Orientation="Horizontal"
+                                    Spacing="6">
+                            <FontIcon Width="24"
+                                      Height="24"
+                                      VerticalAlignment="Center"
+                                      Glyph="&#xE8B9;" />
+                            <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_StaticImage"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </ComboBoxItem>
+
+                    <!-- Bing wallpaper -->
+                    <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_BingWallpaperTips">
+                        <StackPanel Padding="0,2"
+                                    Orientation="Horizontal"
+                                    Spacing="6">
+                            <!-- Tip -->
+                            <userControls:Badge x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_BingWallpaperWebTip" Severity="Warning" />
+
+                            <!-- Content -->
+                            <FontIcon Width="24"
+                                      Height="24"
+                                      VerticalAlignment="Center"
+                                      Glyph="&#xE790;" />
+                            <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_BingWallpaper"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </ComboBoxItem>
+
+                    <!-- Acrylic -->
+                    <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_AcrylicTip">
+                        <StackPanel Padding="0,2"
+                                    Orientation="Horizontal"
+                                    Spacing="6">
+                            <!-- Tip -->
+                            <userControls:Badge x:Uid="/ViewResources/Global_NotImplemented_Badge" Severity="Error">
+                                <ToolTipService.ToolTip>
+                                    <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap">
+                                        <Run x:Uid="/ViewResources/Global_NotImplemented_ToolTipRun" />
+                                        <LineBreak />
+                                        <Run Text="https://github.com/BadBC-Studio/BadMC_Launcher/issues/6" />
+                                    </TextBlock>
+                                </ToolTipService.ToolTip>
+                            </userControls:Badge>
+
+                            <!-- Content -->
+                            <FontIcon Width="24"
+                                      Height="24"
+                                      VerticalAlignment="Center"
+                                      Glyph="&#xF133;" />
+                            <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_Acrylic"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </ComboBoxItem>
+
+                    <!-- Solid color -->
+                    <ComboBoxItem x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_SolidColorTip">
+                        <StackPanel Padding="0,2"
+                                    Orientation="Horizontal"
+                                    Spacing="6">
+                            <!-- Content -->
+                            <FontIcon Width="24"
+                                      Height="24"
+                                      VerticalAlignment="Center"
+                                      Glyph="&#xE790;" />
+                            <TextBlock x:Uid="/ViewResources/ThemeSettingsPage_BackgroundType_SolidColor"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </ComboBoxItem>
+                </ComboBox>
+            </controls:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

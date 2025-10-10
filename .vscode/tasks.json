@@ -9,7 +9,7 @@
         "build",
         "${workspaceFolder}/BadMC_Launcher/BadMC_Launcher.csproj",
         "/property:GenerateFullPaths=true",
-        "/property:TargetFramework=net9.0-desktop",
+        "/property:TargetFramework=net10.0-desktop",
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"
@@ -22,7 +22,7 @@
         "publish",
         "${workspaceFolder}/BadMC_Launcher/BadMC_Launcher.csproj",
         "/property:GenerateFullPaths=true",
-        "/property:TargetFramework=net9.0-desktop",
+        "/property:TargetFramework=net10.0-desktop",
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"

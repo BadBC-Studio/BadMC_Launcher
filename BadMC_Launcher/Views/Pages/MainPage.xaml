@@ -5,27 +5,38 @@
       xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
       xmlns:animations="using:CommunityToolkit.WinUI.Animations"
       xmlns:behaviors="using:CommunityToolkit.WinUI.Behaviors"
+      xmlns:controls="using:CommunityToolkit.WinUI.Controls"
       xmlns:converters="using:CommunityToolkit.WinUI.Converters"
       xmlns:local="using:BadMC_Launcher"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:skia="http://uno.ui/skia"
       xmlns:ui="using:CommunityToolkit.WinUI"
-      xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:userControls="using:BadMC_Launcher.Views.UserControls"
       xmlns:utu="using:Uno.Toolkit.UI"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="skia">
     <Page.Resources>
-        <converters:EmptyStringToObjectConverter x:Key="EmptyStringToObjectConverter"
+        <converters:EmptyStringToObjectConverter x:Key="EmptyStringToBoolConverter"
                                                  EmptyValue="False"
                                                  NotEmptyValue="True" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <ThemeShadow x:Name="ControlShadow" />
     </Page.Resources>
+
+    <Interactivity:Interaction.Behaviors>
+        <!-- Page clicked event -->
+        <Interactivity:EventTriggerBehavior EventName="PointerPressed">
+            <Interactivity:InvokeCommandAction Command="{Binding CloseLaunchPadCommand}" />
+        </Interactivity:EventTriggerBehavior>
+    </Interactivity:Interaction.Behaviors>
 
     <Grid utu:SafeArea.Insets="VisibleBounds" Background="{Binding AppBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <!-- TitleBar -->
         <Border x:Name="AppTitleBar"
                 Grid.Row="0"
@@ -36,18 +47,22 @@
                         VerticalAlignment="Center"
                         Orientation="Horizontal"
                         Spacing="6">
-                <Button Width="36"
-                        Height="36"
-                        Style="{StaticResource ButtonTransparentStyle}">
-                    <FontIcon Glyph="&#xE7C4;" />
-                </Button>
-                <Button Width="36"
-                        Height="36"
-                        Style="{StaticResource ButtonTransparentStyle}">
-                    <ImageIcon Width="24"
-                               Height="24"
-                               Source="\Assets\Icons\appicon_foreground.png" />
-                </Button>
+                <StackPanel x:Name="AppTitleBarButtons"
+                            Orientation="Horizontal"
+                            Spacing="6">
+                    <Button Width="36"
+                            Height="36"
+                            Style="{StaticResource ButtonTransparentStyle}">
+                        <FontIcon Glyph="&#xE7C4;" />
+                    </Button>
+                    <Button Width="36"
+                            Height="36"
+                            Style="{StaticResource ButtonTransparentStyle}">
+                        <ImageIcon Width="24"
+                                   Height="24"
+                                   Source="\Assets\Icons\appicon_foreground.png" />
+                    </Button>
+                </StackPanel>
 
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -55,29 +70,6 @@
                            FontWeight="Bold"
                            Text="{Binding WindowName}" />
             </StackPanel>
-
-            <!-- MenuFlyout -->
-            <FlyoutBase.AttachedFlyout>
-                <Flyout x:Name="MainSideBarFlyout" Placement="TopEdgeAlignedLeft">
-                    <Flyout.FlyoutPresenterStyle>
-                        <Style TargetType="FlyoutPresenter">
-                            <Setter Property="MaxWidth" Value="800" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="CornerRadius" Value="8" />
-                            <Setter Property="VerticalAlignment" Value="Stretch" />
-                            <Setter Property="Margin" Value="52,8,0,0" />
-                        </Style>
-                    </Flyout.FlyoutPresenterStyle>
-                    <Interactivity:Interaction.Behaviors>
-                        <Interactivity:EventTriggerBehavior EventName="Closed">
-                            <Interactivity:InvokeCommandAction Command="{Binding MainSideBarFlyoutClosedCommand}" />
-                        </Interactivity:EventTriggerBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                    <Frame x:Name="MainSideBarFlyoutFrame"
-                           Width="700"
-                           Height="544" />
-                </Flyout>
-            </FlyoutBase.AttachedFlyout>
         </Border>
 
         <!-- DashBoard -->
@@ -85,21 +77,100 @@
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
             <!-- SideBar -->
+            <Border Width="48"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource AccentControlElevationBorderBrush}" />
             <NavigationView x:Name="MainSideBar"
-                            x:Uid="MainPage_MainSideBarNavigationView"
+                            x:Uid="/ViewResources/MainPage_MainSideBarNavigationView"
                             Margin="-1"
                             FooterMenuItemsSource="{Binding MainSideBarFooterItems}"
-                            IsBackButtonVisible="Collapsed"
-                            IsSettingsVisible="false"
+                            IsBackEnabled="{x:Bind MainFrame.CanGoBack}"
+                            IsSettingsVisible="False"
                             MenuItemsSource="{Binding MainSideBarItems}"
                             PaneDisplayMode="LeftCompact"
                             SelectedItem="{Binding MainSideBarSelectedItem, Mode=TwoWay}">
-
                 <!-- SideBar Styles -->
                 <NavigationView.Resources>
-                    <StaticResource x:Key="NavigationViewExpandedPaneBackground" ResourceKey="AcrylicInAppFillColorDefaultBrush" />
                     <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
+                    <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent" />
                 </NavigationView.Resources>
+
+                <NavigationView.AutoSuggestBox>
+                    <!-- Search Box -->
+                    <AutoSuggestBox x:Name="SearchAutoSuggestBox"
+                                    x:Uid="/ViewResources/MainPage_SearchResource"
+                                    ItemTemplate="{StaticResource MainMenuSearchItemTemplate}"
+                                    ItemsSource="{Binding SearchItems, Mode=TwoWay}"
+                                    Text="{Binding SearchText, Mode=TwoWay}">
+                        <AutoSuggestBox.QueryIcon>
+                            <FontIcon FontSize="16" Glyph="&#xE71C;" />
+                        </AutoSuggestBox.QueryIcon>
+
+                        <Interactivity:Interaction.Behaviors>
+                            <!-- SearchButton Clicked Event -->
+                            <Interactivity:EventTriggerBehavior EventName="QuerySubmitted">
+                                <Interactivity:InvokeCommandAction Command="{Binding OpenSearchFilterCommand}" CommandParameter="{Binding ElementName=SearchAutoSuggestBox}" />
+                            </Interactivity:EventTriggerBehavior>
+
+                            <!-- SearchItem Selected Event -->
+                            <Interactivity:EventTriggerBehavior EventName="SuggestionChosen">
+                                <Interactivity:InvokeCommandAction Command="{Binding SearchItemNavigateToPageCommand}" />
+                            </Interactivity:EventTriggerBehavior>
+
+                            <!-- Text Changed Event -->
+                            <Interactivity:EventTriggerBehavior EventName="TextChanged">
+                                <Interactivity:InvokeCommandAction Command="{Binding SearchItemCommand}" />
+                            </Interactivity:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+
+                        <!-- Search Filter Button -->
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <StackPanel Spacing="16">
+                                    <!-- Tags Head -->
+                                    <StackPanel x:Uid="/ViewResources/Global_BetaTipResource"
+                                                Orientation="Horizontal"
+                                                Spacing="8">
+                                        <TextBlock x:Uid="/ViewResources/MainPage_SearchFilterTagsResource" FontWeight="Bold" />
+                                        <Border Background="{ThemeResource SystemFillColorCautionBackgroundBrush}" CornerRadius="4">
+                                            <TextBlock Margin="8,0"
+                                                       FontWeight="Bold"
+                                                       Text="BETA" />
+                                        </Border>
+                                    </StackPanel>
+                                    <!-- Select Tags -->
+                                    <controls:Segmented x:Name="SearchFilterSegmented"
+                                                        ItemsSource="{Binding SearchFilterItems, Mode=TwoWay}"
+                                                        SelectionMode="Multiple"
+                                                        Style="{ThemeResource ButtonSegmentedStyle}">
+                                        <controls:Segmented.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="8,0"
+                                                            Orientation="Horizontal"
+                                                            Spacing="8">
+                                                    <FontIcon VerticalAlignment="Center" Glyph="{Binding IconGlyph}" />
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                                               Text="{Binding ItemName}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </controls:Segmented.ItemTemplate>
+
+                                        <!-- SearchTags Selected Event -->
+                                        <Interactivity:Interaction.Behaviors>
+                                            <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                                                <Interactivity:InvokeCommandAction Command="{Binding ChangeSearchFilterCommand}" CommandParameter="{Binding ElementName=SearchFilterSegmented}" />
+                                            </Interactivity:EventTriggerBehavior>
+                                        </Interactivity:Interaction.Behaviors>
+                                    </controls:Segmented>
+                                </StackPanel>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </AutoSuggestBox>
+                </NavigationView.AutoSuggestBox>
+
 
                 <!-- MenuItem Template -->
                 <NavigationView.MenuItemTemplate>
@@ -110,17 +181,29 @@
                     </DataTemplate>
                 </NavigationView.MenuItemTemplate>
 
+                <!-- NavigationView Behaviors -->
                 <Interactivity:Interaction.Behaviors>
-                    <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
-                        <Interactivity:InvokeCommandAction Command="{Binding MainSideBarSelectionChangedCommand}" CommandParameter="{Binding ElementName=MainSideBar}" />
+                    <!-- MenuItem Clicked Event -->
+                    <Interactivity:EventTriggerBehavior EventName="ItemInvoked">
+                        <Interactivity:InvokeCommandAction Command="{Binding NavigateToPageCommand}" />
+                    </Interactivity:EventTriggerBehavior>
+
+                    <!-- Back Button Clicked Event -->
+                    <Interactivity:EventTriggerBehavior EventName="BackRequested">
+                        <Interactivity:InvokeCommandAction Command="{Binding PageGoBackCommand}" />
                     </Interactivity:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
 
                 <Grid Margin="16">
-                    <!-- LaunchPad -->
-                    <userControls:LaunchPad Width="336" HorizontalAlignment="Right" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="336" />
+                    </Grid.ColumnDefinitions>
+
                     <!-- Page Frame -->
                     <Grid x:Name="MainFrameGrid"
+                          Grid.ColumnSpan="2"
+                          Margin="64,32"
                           Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
                           CornerRadius="8"
                           Visibility="Collapsed">
@@ -131,14 +214,12 @@
                             <animations:AnimationSet x:Name="FrameInAnimation">
                                 <animations:OpacityAnimation From="0"
                                                              To="1"
-                                                             Duration="0:0:0.3" />
+                                                             Duration="0:0:0.6" />
                                 <animations:TranslationAnimation EasingMode="EaseOut"
                                                                  EasingType="Circle"
                                                                  From="0,150,0"
                                                                  To="0"
-                                                                 Duration="0:0:0.3" />
-
-                                <!-- Animation Behaviors -->
+                                                                 Duration="0:0:0.6" />
                             </animations:AnimationSet>
 
                             <!-- Frame Closed -->
@@ -147,12 +228,12 @@
                                                              EasingType="Circle"
                                                              From="1"
                                                              To="0"
-                                                             Duration="0:0:0.3" />
+                                                             Duration="0:0:0.2" />
                                 <animations:TranslationAnimation EasingMode="EaseIn"
                                                                  EasingType="Circle"
                                                                  From="0"
                                                                  To="0,150,0"
-                                                                 Duration="0:0:0.3" />
+                                                                 Duration="0:0:0.2" />
 
                                 <!-- Animation Behaviors -->
                                 <Interactivity:Interaction.Behaviors>
@@ -165,10 +246,12 @@
                             </animations:AnimationSet>
                         </animations:Explicit.Animations>
 
-                        <win:Frame x:Name="MainSideBarFrame">
+
+
+                        <Frame x:Name="MainFrame">
                             <Interactivity:Interaction.Behaviors>
                                 <!-- Frame Navigated -->
-                                <Interactivity:DataTriggerBehavior Binding="{Binding Content, ElementName=MainSideBarFrame, Converter={StaticResource EmptyStringToObjectConverter}}"
+                                <Interactivity:DataTriggerBehavior Binding="{Binding Content, ElementName=MainFrame, Converter={StaticResource EmptyStringToBoolConverter}}"
                                                                    ComparisonCondition="Equal"
                                                                    Value="True">
                                     <Interactivity:ChangePropertyAction PropertyName="Visibility"
@@ -178,86 +261,54 @@
                                 </Interactivity:DataTriggerBehavior>
 
                                 <!-- Frame Closed -->
-                                <Interactivity:DataTriggerBehavior Binding="{Binding Content, ElementName=MainSideBarFrame, Converter={StaticResource EmptyStringToObjectConverter}}"
+                                <Interactivity:DataTriggerBehavior Binding="{Binding Content, ElementName=MainFrame, Converter={StaticResource EmptyStringToBoolConverter}}"
                                                                    ComparisonCondition="Equal"
                                                                    Value="False">
-                                    <Interactivity:InvokeCommandAction Command="{Binding MainSideBarFrameNavigatedCommand}" CommandParameter="{Binding ElementName=MainSideBarFrame}" />
+                                    <Interactivity:InvokeCommandAction Command="{Binding ChangeToolVisibilityAndSelectedItemCommand}" CommandParameter="{Binding Content, ElementName=MainFrame}" />
                                     <behaviors:StartAnimationAction Animation="{Binding ElementName=FrameOutAnimation}" />
                                 </Interactivity:DataTriggerBehavior>
 
                                 <!-- Frame Navigated Event -->
                                 <Interactivity:EventTriggerBehavior EventName="Navigated">
-                                    <Interactivity:InvokeCommandAction Command="{Binding MainSideBarFrameNavigatedCommand}" CommandParameter="{Binding ElementName=MainSideBarFrame}" />
+                                    <Interactivity:InvokeCommandAction Command="{Binding ChangeToolVisibilityAndSelectedItemCommand}" CommandParameter="{Binding Content, ElementName=MainFrame}" />
                                 </Interactivity:EventTriggerBehavior>
                             </Interactivity:Interaction.Behaviors>
-                        </win:Frame>
+                        </Frame>
 
-                        <skia:Frame x:Name="MainSideBarFrame">
-                            <Interactivity:Interaction.Behaviors>
-                                <!-- Frame Navigated -->
-                                <Interactivity:DataTriggerBehavior Binding="{Binding Content, ElementName=MainSideBarFrame, Converter={StaticResource EmptyStringToObjectConverter}}"
-                                           ComparisonCondition="Equal"
-                                           Value="True">
-                                    <Interactivity:ChangePropertyAction PropertyName="Visibility"
-                                                TargetObject="{Binding ElementName=MainFrameGrid}"
-                                                Value="Visible" />
-                                </Interactivity:DataTriggerBehavior>
-
-                                <!-- Frame Closed -->
-                                <Interactivity:DataTriggerBehavior Binding="{Binding Content, ElementName=MainSideBarFrame, Converter={StaticResource EmptyStringToObjectConverter}}"
-                                           ComparisonCondition="Equal"
-                                           Value="False">
-                                    <Interactivity:ChangePropertyAction PropertyName="Visibility"
-                                                TargetObject="{Binding ElementName=MainFrameGrid}"
-                                                Value="Collapsed" />
-                                </Interactivity:DataTriggerBehavior>
-
-                                <!-- Frame Navigated Event -->
-                                <Interactivity:EventTriggerBehavior EventName="Navigated">
-                                    <Interactivity:InvokeCommandAction Command="{Binding MainSideBarFrameNavigatedCommand}" CommandParameter="{Binding ElementName=MainSideBarFrame}" />
-                                </Interactivity:EventTriggerBehavior>
-                            </Interactivity:Interaction.Behaviors>
-                        </skia:Frame>
-
-                        <!-- PageFrame Button -->
-                        <StackPanel x:Name="MainSideBarPageMenu"
-                                    Margin="6"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Orientation="Horizontal"
-                                    Spacing="6"
-                                    Visibility="{Binding MainSideBarToolVisibility}">
-                            <!-- Back to Page -->
-                            <Button Width="36"
-                                    Height="36"
-                                    Command="{Binding BackButtonCommand}"
-                                    CommandParameter="{Binding ElementName=MainSideBarFrame}"
-                                    Style="{StaticResource ButtonTransparentStyle}">
-                                <AnimatedIcon x:Name="SearchAnimatedIcon"
-                                              Width="18"
-                                              Height="18">
-                                    <AnimatedIcon.FallbackIconSource>
-                                        <FontIconSource FontSize="16" Glyph="&#xE72B;" />
-                                    </AnimatedIcon.FallbackIconSource>
-                                    <AnimatedIcon.Source>
-                                        <animatedvisuals:AnimatedBackVisualSource />
-                                    </AnimatedIcon.Source>
-                                </AnimatedIcon>
-                            </Button>
-
-                            <!-- Close Page -->
-                            <Button Width="36"
-                                    Height="36"
-                                    Command="{Binding CloseButtonCommand}"
-                                    CommandParameter="{Binding ElementName=MainSideBarFrame}"
-                                    Style="{StaticResource ButtonTransparentStyle}">
-                                <FontIcon Width="18"
-                                          Height="18"
-                                          FontSize="16"
-                                          Glyph="&#xE711;" />
-                            </Button>
-                        </StackPanel>
+                        <!-- Close page Button -->
+                        <Button x:Name="ClosePageButton"
+                                Width="36"
+                                Height="36"
+                                Margin="4"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Command="{Binding ClosePageCommand}"
+                                CommandParameter="{Binding ElementName=MainFrame}"
+                                Style="{StaticResource ButtonTransparentStyle}"
+                                Visibility="{Binding IsMainSideBarToolShow, Converter={StaticResource BoolToVisibilityConverter}, Mode=TwoWay}">
+                            <FontIcon Width="16"
+                                      Height="16"
+                                      FontSize="14"
+                                      Glyph="&#xE711;" />
+                        </Button>
                     </Grid>
+
+                    <Button Content="OwOWOWOWOWOWOOWOWO" Click="Button_Click"/>
+
+                    <!-- LaunchPad -->
+                    <userControls:LaunchPad x:Name="LaunchPadControl"
+                                            Grid.Column="1"
+                                            Width="336"
+                                            HorizontalAlignment="Right"
+                                            IsOpen="{x:Bind viewModel.IsLaunchPadOpen, Mode=TwoWay}" />
+
+                    <!-- Notification items -->
+                    <StackPanel x:Name="NotificationsStackPanel"
+                                Grid.ColumnSpan="2"
+                                Width="400"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Stretch"
+                                Spacing="8" />
                 </Grid>
             </NavigationView>
         </Grid>

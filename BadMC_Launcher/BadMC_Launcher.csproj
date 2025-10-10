@@ -1,19 +1,18 @@
 <Project Sdk="Uno.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net9.0-maccatalyst;net9.0-windows10.0.26100;net9.0-desktop;net9.0</TargetFrameworks>
-        <LangVersion>preview</LangVersion>
+        <TargetFrameworks>net10.0-windows10.0.26100;net10.0-desktop;net10.0</TargetFrameworks>
         
         <OutputType>Exe</OutputType>
         <UnoSingleProject>true</UnoSingleProject>
         
         <!-- Display name -->
         <ApplicationTitle>BadMC_Launcher</ApplicationTitle>
-
+        
         <!-- Application Icon -->
         <UnoIconForegroundFile>Assets\Icons\appicon_foreground.png</UnoIconForegroundFile>
         <UnoIconBackgroundFile>Assets\Icons\appicon_background.png</UnoIconBackgroundFile>
         <UnoIconForegroundScale>0.6</UnoIconForegroundScale>
-        
+          
         <!-- App Identifier -->
         <ApplicationId>org.BadBC.BadMC_Launcher</ApplicationId>
         
@@ -22,155 +21,89 @@
         <ApplicationVersion>1</ApplicationVersion>
         
         <!-- Package Publisher -->
-        <ApplicationPublisher>Starcloudsea</ApplicationPublisher>
+        <ApplicationPublisher>stars</ApplicationPublisher>
         
         <!-- Package Description -->
         <Description>BadMC_Launcher powered by Uno Platform.</Description>
-        
-        <!-- Native AOT Support -->
-        <!-- TODO: 在Mvvm支持AOT之前就憋想取消这个的注释了吧（悲） -->
-        <!--<PublishAot>true</PublishAot>-->
-        
+
+        <!-- Lang Version -->
+        <LangVersion>preview</LangVersion>
         <!--
-          If you encounter this error message:
-        
-            error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
-            Please update to a newer .NET SDK in order to reference this assembly.
-        
-          This means that the two packages below must be aligned with the "build" version number of
-          the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
-          must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
+            If you encounter this error message:
+            
+              error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
+              Please update to a newer .NET SDK in order to reference this assembly.
+            
+            This means that the two packages below must be aligned with the "build" version number of
+            the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
+            must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
         -->
         <!-- <WindowsSdkPackageVersion>10.0.22621.28</WindowsSdkPackageVersion> -->
         
         <!--
-          UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
-          https://aka.platform.uno/singleproject-features
+            UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
+            https://aka.platform.uno/singleproject-features
         -->
         <UnoFeatures>
             Lottie;
+            MediaElement;
             Hosting;
             Toolkit;
             Logging;
             LoggingSerilog;
             Mvvm;
+            Configuration;
             ThemeService;
+            SkiaRenderer;
         </UnoFeatures>
-        <Platforms>AnyCPU;ARM64;x64;x86</Platforms>
+        <PackageCertificateThumbprint>EA4A1287C6D4EA6154BDE69CD29176C76A27C499</PackageCertificateThumbprint>
+        <PackageCertificateKeyFile>BadMC_Launcher_TemporaryKey.pfx</PackageCertificateKeyFile>
+        <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     </PropertyGroup>
-    <ItemGroup>
-      <None Remove="Assets\Icons\appicon_foreground.png" />
+    <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows10.0.26100'">
+        <PackageReference Include="CommunityToolkit.Labs.WinUI.Controls.MarkdownTextBlock" />
     </ItemGroup>
     <ItemGroup>
-        <TrimmerRootAssembly Include="BadMC_Launcher" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.altform-lightunplated_targetsize-16.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.altform-lightunplated_targetsize-256.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.altform-lightunplated_targetsize-48.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.altform-unplated_targetsize-16.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.altform-unplated_targetsize-256.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.altform-unplated_targetsize-48.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.scale-100.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.scale-200.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.scale-400.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.targetsize-16.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.targetsize-256.png" />
+      <Content Remove="Assets\Icons\PackageIcons\AppIcon.targetsize-48.png" />
+      <Content Remove="Assets\Icons\PackageIcons\MediumTile.scale-100.png" />
+      <Content Remove="Assets\Icons\PackageIcons\MediumTile.scale-200.png" />
+      <Content Remove="Assets\Icons\PackageIcons\MediumTile.scale-400.png" />
+      <Content Remove="Assets\Icons\PackageIcons\PackageLogo.scale-100.png" />
+      <Content Remove="Assets\Icons\PackageIcons\PackageLogo.scale-200.png" />
+      <Content Remove="Assets\Icons\PackageIcons\PackageLogo.scale-400.png" />
     </ItemGroup>
     <ItemGroup>
-          <PackageReference Include="CommunityToolkit.Labs.WinUI.TokenView" />
-          <PackageReference Include="CommunityToolkit.WinUI.Behaviors" />
-          <PackageReference Include="CommunityToolkit.WinUI.Controls.MetadataControl" />
-          <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" />
-          <PackageReference Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" />
-          <PackageReference Include="CommunityToolkit.WinUI.Converters" />
-          <PackageReference Include="CommunityToolkit.WinUI.Extensions" />
-          <PackageReference Include="CommunityToolkit.WinUI.Triggers" />
-          <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
-          <PackageReference Include="MinecraftLaunch" />
-          <PackageReference Include="Uno.WinUI.DevServer.Messaging" />
-    
+        <PackageReference Include="CommunityToolkit.WinUI.Animations" />
+        <PackageReference Include="CommunityToolkit.WinUI.Behaviors" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.ColorPicker" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.MetadataControl" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.RangeSelector" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" />
+        <PackageReference Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" />
+        <PackageReference Include="CommunityToolkit.WinUI.Converters" />
+        <PackageReference Include="GEmojiSharp" />
+        <PackageReference Include="Hardware.Info" />
+        <PackageReference Include="MinecraftLaunch" />
     </ItemGroup>
     <ItemGroup>
-        <Page Update="Views\Pages\BlankPage1.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup>
-        <Page Update="Views\Pages\DashboardPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-    </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.26100'">
-        <PackageReference Include="CommunityToolkit.WinUI.Controls.RichSuggestBox" />
-        <PackageReference Include="CommunityToolkit.WinUI.Lottie" />
-        <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
+        <Folder Include="Classes\Converters\" />
+        <Folder Include="Strings\zh-Hans\Views\" />
+
+        <UnoIcon Include="Assets\Icons\appicon_background.png" ForegroundFile="Assets\Icons\appicon_foreground.png" ForegroundScale="0.6" />
     </ItemGroup>
 
-    <ItemGroup>
-      <UnoIcon Include="Assets\Icons\appicon_background.png" ForegroundFile="Assets\Icons\appicon_foreground.png" ForegroundScale="0.6">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </UnoIcon>
-    </ItemGroup>
-
-    <ItemGroup>
-      <UnoImage Include="Assets\Icons\appicon_foreground.png" />
-    </ItemGroup>
-    <ItemGroup>
-      <UnoImage Include="Assets\Icons\MinecraftIcons\*" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Page Update="Views\Pages\MainSideBarPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Update="Views\UserControls\LaunchPad.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Update="Views\Pages\MainSideBarPages\MainMenuPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Views\Pages\MainSideBarPages\" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Update="Strings\en-US\MainDashboardResources.Designer.tt">
-        <Generator>TextTemplatingFileGenerator</Generator>
-        <DependentUpon>MainDashboardResources.resw</DependentUpon>
-        <LastGenOutput>MainDashboardResources.Designer.cs</LastGenOutput>
-      </None>
-      <None Update="Strings\en-US\Resources.resw">
-        <Generator></Generator>
-      </None>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Update="Views\Styles\Templates\MainMenuSearchTemplate.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Update="Views\Styles\ButtonStyle.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Update="Views\Styles\Templates\BaseTemplate.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Update="Strings\en-US\MainDashboardResources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>MainDashboardResources.Designer.tt</DependentUpon>
-      </Compile>
-      <Compile Update="Views\Pages\SettingsPages\SettingsDashboardPage.xaml.cs">
-        <DependentUpon>SettingsDashboardPage.xaml</DependentUpon>
-      </Compile>
-    </ItemGroup>
-    <ItemGroup>
-      <PRIResource Update="Strings\en-US\Resources.resw">
-        <Generator></Generator>
-      </PRIResource>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Update="Views\Pages\SettingsPages\SettingsDashboardPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-    </ItemGroup>
 </Project>

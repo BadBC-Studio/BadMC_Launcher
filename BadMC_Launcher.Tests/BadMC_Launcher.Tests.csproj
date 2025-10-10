@@ -1,21 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <Platforms>AnyCPU;ARM64;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" />
-    <PackageReference Include="BenchmarkDotNet.TestAdapter" />
-    <PackageReference Include="CommunityToolkit.Labs.WinUI.TokenView" />
+    <PackageReference Include="CommunityToolkit.WinUI.Animations" />
     <PackageReference Include="CommunityToolkit.WinUI.Behaviors" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.ColorPicker" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.MetadataControl" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.RangeSelector" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" />
+    <PackageReference Include="CommunityToolkit.WinUI.Converters" />
     <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
+    <PackageReference Include="GEmojiSharp" />
+    <PackageReference Include="Hardware.Info" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="MinecraftLaunch" />
     <PackageReference Include="NUnit" />
@@ -28,7 +33,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Uno.WinUI.DevServer.Messaging" />
   </ItemGroup>
 
   <ItemGroup>

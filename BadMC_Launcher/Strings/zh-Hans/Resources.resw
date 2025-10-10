@@ -120,55 +120,154 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>BadMC Launcher</value>
   </data>
-  <data name="LaunchPad_LaunchButtonNameResource.Text" xml:space="preserve">
-    <value>启动 Minecraft!</value>
-  </data>
   <data name="LaunchPad_LaunchButtonTagDefaultResource" xml:space="preserve">
-    <value>未选择本体_( ﾟДﾟ)ﾉ</value>
+    <value>未选择版本 _( ﾟДﾟ)ﾉ</value>
   </data>
-  <data name="MinecraftConfig_MinecraftTitleNameResource" xml:space="preserve">
-    <value>BadMC Launcher - 让我们一起MINECRAFT！</value>
+  <data name="Global_DefaultLauncherNameResource" xml:space="preserve">
+    <value>使用 BadMCL（不是 BMCL！！!）启动</value>
   </data>
-  <data name="LaunchPad_MinecraftListRefreshResource.Text" xml:space="preserve">
-    <value>刷新</value>
-  </data>
-  <data name="LaunchPad_MinecraftListsManagerResource.Text" xml:space="preserve">
-    <value>管理 .minecraft 文件夹</value>
-  </data>
-  <data name="LaunchPad_ViewLocalMinecraftFolderResource.Text" xml:space="preserve">
-    <value>浏览 .minecraft 文件夹</value>
-  </data>
-  <data name="LaunchPad_MinecraftEmptyListTipsTextResource.Text" xml:space="preserve">
-    <value>找不到任何本体.</value>
-  </data>
-  <data name="LaunchPad_MinecraftEmptyListTipsHyperLinkButtonResource.Text" xml:space="preserve">
-    <value>转到本体页面以管理Minecraft本体.</value>
-  </data>
-  <data name="MainMenuPage_SearchResource.PlaceholderText" xml:space="preserve">
-    <value>搜点什么？ψ(｀∇´)ψ</value>
-  </data>
-  <data name="MainPage_MainMenuNameResource" xml:space="preserve">
-    <value>菜单</value>
-  </data>
-  <data name="MainMenuPage_SearchFilterMinecraftEntryNameResource" xml:space="preserve">
-    <value>Minecraft 本体</value>
-  </data>
-  <data name="MainMenuPage_SearchFilterTagsResource.Text" xml:space="preserve">
-    <value>筛选搜索结果</value>
-  </data>
-  <data name="Global_BetaTipResource.ToolTipService.ToolTip" xml:space="preserve">
-    <value>该功能目前为测试状态，随时可能更改或删除.</value>
-  </data>
-  <data name="MainMenuPage_SearchFilterRealTimeToggleResource.Text" xml:space="preserve">
-    <value>实时更新</value>
-  </data>
-  <data name="MainMenuPage_SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="SideBar_SettingsNameResource" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="MainMenuPage_ScriptsButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>脚本</value>
+  <data name="SideBarSearchFilter_MinecraftEntryNameResource" xml:space="preserve">
+    <value>Minecraft 版本</value>
   </data>
-  <data name="MainPage_MainSideBarNavigationView.PaneTitle" xml:space="preserve">
-    <value>让我们一起 BadMC Launcher！ 🥳😝😈</value>
+  <data name="SettingsSideBarItems_LaunchSettingsPageName" xml:space="preserve">
+    <value>Minecraft 设置</value>
+  </data>
+  <data name="Global_NullMinecraftFolderId" xml:space="preserve">
+    <value>找不到活动的 Minecraft 版本文件夹 Σ(°ロ°)</value>
+  </data>
+  <data name="Global_NullMinecraftFolderPath" xml:space="preserve">
+    <value>这里可以显示活动的 MInecraft 版本文件夹路径，但前提是你有设置一个活动的 Minecraft 版本文件夹路径 😏</value>
+  </data>
+  <data name="Global_NullJavaId" xml:space="preserve">
+    <value>找不到活动的 Java 运行时 ( `ε´ )</value>
+  </data>
+  <data name="Global_NullJavaPath" xml:space="preserve">
+    <value>在显示 Java 运行时之前请设置活动的 Java 运行时 😰</value>
+  </data>
+  <data name="Global_AutoJavaPath" xml:space="preserve">
+    <value>自动设置</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore0" xml:space="preserve">
+    <value>好像哪里出错了! (不可能会这样啊?😨)</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore3" xml:space="preserve">
+    <value>对于 Minecraft 可能非常吃力...... 😟</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore4" xml:space="preserve">
+    <value>这个内存大小对于 Minecraft 来说不错. 🙂</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore5" xml:space="preserve">
+    <value>这个内存大小很棒! 😋</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore6" xml:space="preserve">
+    <value>woc! 有钱人! 😮</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore7" xml:space="preserve">
+    <value>啊?????? Σ(っ °Д °;)っ</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore1" xml:space="preserve">
+    <value>最大已分配超出总内存可能会把 Minecraft 搞崩啊! 😨</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore2" xml:space="preserve">
+    <value>等等! 这内存可能连 Minecraft 都运行不起来吧! 😰</value>
+  </data>
+  <data name="VersionIsolationFilter_ModLoaderFilterViewName" xml:space="preserve">
+    <value>仅可安装Mod的版本</value>
+  </data>
+  <data name="VersionIsolationFilter_ModifiedFilterViewName" xml:space="preserve">
+    <value>仅已被修改的版本</value>
+  </data>
+  <data name="VersionIsolationFilter_DisabledFilterViewName" xml:space="preserve">
+    <value>对所有版本禁用</value>
+  </data>
+  <data name="VersionIsolationFilter_EnabledFilterViewName" xml:space="preserve">
+    <value>对所有版本启用</value>
+  </data>
+  <data name="DefaultJvmArgments_Demo" xml:space="preserve">
+    <value>以 Demo 模式启动 Minecraft.</value>
+  </data>
+  <data name="ToastNotification_NotificationNotFoundTitle" xml:space="preserve">
+    <value>找不到可用的类型显示此通知.</value>
+  </data>
+  <data name="VersionIsolationFilter_NotReleaseFilterViewName" xml:space="preserve">
+    <value>所有非正式版</value>
+  </data>
+  <data name="DefaultJvmArgments_Unknown" xml:space="preserve">
+    <value>未翻译的参数 😥</value>
+  </data>
+  <data name="ToastNotification_NotificationNotFoundMessage" xml:space="preserve">
+    <value>对应的通知卡片未找到, 你应该检查插件问题.</value>
+  </data>
+  <data name="ToastNotification_BackgroundErrorTitle" xml:space="preserve">
+    <value>无法设置背景图片.</value>
+  </data>
+  <data name="ToastNotification_BackgroundErrorMessage" xml:space="preserve">
+    <value>你的背景图片路径有错误:</value>
+  </data>
+  <data name="ToastNotification_BingWallpaperErrorTitle" xml:space="preserve">
+    <value>在获取 Bing 壁纸时出现问题</value>
+  </data>
+  <data name="ToastNotification_BingWallpaperJsonErrorMessage" xml:space="preserve">
+    <value>无法识别 Bing API 的 Json 格式, 你应该向我们的 GitHub 仓库提交 Issue.</value>
+  </data>
+  <data name="ToastNotification_BingWallpaperGetErrorMessage" xml:space="preserve">
+    <value>现在无法访问 Bing API, 请检查你的网络连接, 然后重试.</value>
+  </data>
+  <data name="TipNotification_JavaNameErrorTitle" xml:space="preserve">
+    <value>无法添加这个 Java: 文件名异常.</value>
+  </data>
+  <data name="TipNotification_JavaNameErrorMessage" xml:space="preserve">
+    <value>请确保你在添加名为 "java" 或  "javaw" 的 程序, 而不是 Java 安装程序😰</value>
+  </data>
+  <data name="TipNotification_JavaDuplicationTitle" xml:space="preserve">
+    <value>你已经添加过该 Java 了.</value>
+  </data>
+  <data name="ToastNotification_ReadJsonErrorTitle" xml:space="preserve">
+    <value>读取 Json 文件时发生错误.</value>
+  </data>
+  <data name="ToastNotification_JsonErrorMessage" xml:space="preserve">
+    <value>看起来 Json 文件格式出现了问题, 现在继续修改设置可能会导致新设置丢失.
+有些设置未同步也不会被保存, 你可能要手动根据这些信息自行修改或删除 Json 文件.</value>
+  </data>
+  <data name="ToastNotification_JsonErrorOpenJson_ButtonText" xml:space="preserve">
+    <value>打开出错的 Json 文件</value>
+  </data>
+  <data name="ToastNotification_JsonErrorDeleteJson_ButtonText" xml:space="preserve">
+    <value>将 Json 文件移动到回收站 (危险!!!)</value>
+  </data>
+  <data name="ToastNotification_UnauthorizedAccessErrorTitle" xml:space="preserve">
+    <value>发生错误: 拒绝访问.</value>
+  </data>
+  <data name="ToastNotification_UnauthorizedAccessErrorMessage" xml:space="preserve">
+    <value>现在无法访问文件, 因为系统拒绝了文件访问.
+可能文件被设为只读, 或者我们没有对该文件的访问权限.
+该路径的文件发生错误:</value>
+  </data>
+  <data name="ToastNotification_PathTooLongErrorTitle" xml:space="preserve">
+    <value>访问文件系统时发生错误: 路径太长.</value>
+  </data>
+  <data name="ToastNotification_PathTooLongErrorMessage" xml:space="preserve">
+    <value>这个路径超过了系统最长路径的限制, 你需要检查文件路径 (通常最大是256个字符):</value>
+  </data>
+  <data name="ToastNotification_IOErrorTitle" xml:space="preserve">
+    <value>由于 IOException, 无法访问文件.</value>
+  </data>
+  <data name="ToastNotification_IOErrorMessage" xml:space="preserve">
+    <value>这个文件可能被其它程序占用:</value>
+  </data>
+  <data name="ToastNotification_Win32ErrorTitle" xml:space="preserve">
+    <value>由于 Win32Exception 异常, 无法打开路径.</value>
+  </data>
+  <data name="ToastNotification_FileNotFoundErrorTitle" xml:space="preserve">
+    <value>无法打开路径: 找不到文件 😥</value>
+  </data>
+  <data name="SettingsSideBarItems_ThemeSettingsPageName" xml:space="preserve">
+    <value>外观</value>
+  </data>
+  <data name="TipNotification_MinecraftFolderDuplicationTitle" xml:space="preserve">
+    <value>你已经添加过这个 Minecraft 文件夹了.</value>
   </data>
 </root>

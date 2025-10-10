@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utu="using:Uno.Toolkit.UI">
+    <!--<utu: x:Key="CardShadowPrimary"
+               / BlurRadius="30"
+                IsInner="True"
+                OffsetX="50"
+                OffsetY="50"
+                Opacity="1"
+                Spread="-5"
+                Color="Red" />-->
+
+</ResourceDictionary>

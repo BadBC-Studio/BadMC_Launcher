@@ -1,0 +1,479 @@
+﻿<Page x:Class="BadMC_Launcher.Views.Pages.Settings.LaunchSettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+      xmlns:converters="using:CommunityToolkit.WinUI.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:CommunityToolkit.WinUI"
+      mc:Ignorable="d">
+    <Page.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolInvertConverter"
+                                          FalseValue="True"
+                                          TrueValue="False" />
+    </Page.Resources>
+
+    <Interactivity:Interaction.Behaviors>
+        <Interactivity:EventTriggerBehavior EventName="Unloaded">
+            <Interactivity:InvokeCommandAction Command="{Binding CancelLoopCommand}" />
+        </Interactivity:EventTriggerBehavior>
+    </Interactivity:Interaction.Behaviors>
+
+    <ScrollViewer>
+        <StackPanel Margin="18,12" Spacing="8">
+            <!-- Tips -->
+            <InfoBar x:Uid="/ViewResources/LaunchSettingsPage_TipsInfoBar"
+                     IsClosable="False"
+                     IsOpen="True"
+                     Severity="Informational" />
+
+            <!-- Minecraft folder setting -->
+            <controls:SettingsCard x:Name="MinecraftFolderSettingsCard" x:Uid="/ViewResources/LaunchSettingsPage_MinecraftFolderSettingsCard">
+                <!-- Icons -->
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8F7;" />
+                </controls:SettingsCard.HeaderIcon>
+                <controls:SettingsCard.ActionIcon>
+                    <FontIcon Glyph="&#xE78B;" />
+                </controls:SettingsCard.ActionIcon>
+
+                <Button x:Name="OpenMinecraftFolderManagerButton"
+                        Command="{Binding ShowMinecraftFolderManagerDialogCommand}"
+                        Style="{ThemeResource AccentButtonStyle}"
+                        ToolTipService.ToolTip="{Binding MinecraftFolderPath}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8A7;" />
+                        <TextBlock x:Name="MinecraftFolderIdTextBlock"
+                                   MaxWidth="300"
+                                   VerticalAlignment="Center"
+                                   Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   Text="{Binding MinecraftFolderId}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+            </controls:SettingsCard>
+
+            <!-- Java path setting -->
+            <controls:SettingsCard x:Name="JavaSettingsCard" x:Uid="/ViewResources/LaunchSettingsPage_JavaPathSettingsCard">
+                <!-- Icons -->
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xF133;" />
+                </controls:SettingsCard.HeaderIcon>
+                <controls:SettingsCard.ActionIcon>
+                    <FontIcon Glyph="&#xE78B;" />
+                </controls:SettingsCard.ActionIcon>
+
+                <Button Command="{Binding ShowJavaManagerDialogCommand}"
+                        Style="{ThemeResource AccentButtonStyle}"
+                        ToolTipService.ToolTip="{Binding JavaPath}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8A7;" />
+                        <TextBlock MaxWidth="300"
+                                   VerticalAlignment="Center"
+                                   Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                   Text="{Binding JavaId}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+            </controls:SettingsCard>
+
+            <!-- Game memory size setting -->
+            <controls:SettingsExpander x:Uid="/ViewResources/LaunchSettingsPage_GameMemorySizeSettingsExpander">
+                <!-- Icons -->
+                <controls:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xE9D9;" />
+                </controls:SettingsExpander.HeaderIcon>
+
+                <!-- Game memory setting -->
+                <controls:SettingsExpander.Items>
+                    <!-- Game memory View -->
+                    <controls:SettingsCard Description="{x:Bind GetGameMemoryScore(viewModel.GameMemoryView, viewModel.UsedMemoryView, viewModel.MaxMemoryView), Mode=OneWay}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE95E;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Header -->
+                        <controls:SettingsCard.Header>
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="6">
+                                <!-- Max memory view -->
+                                <TextBlock x:Uid="/ViewResources/LaunchSettingsPage_MemoryViewSettingsCard"
+                                           VerticalAlignment="Center"
+                                           Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                <Border VerticalAlignment="Center"
+                                        Background="{ThemeResource ControlFillColorDefaultBrush}"
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="4">
+                                    <TextBlock Margin="6,2"
+                                               VerticalAlignment="Center"
+                                               Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                               TextTrimming="Clip">
+                                        <Run Text="{x:Bind MbToGbString(viewModel.MaxMemoryView), Mode=OneWay}" />
+                                        <Run Text="GB" />
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </controls:SettingsCard.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Memory text -->
+                            <StackPanel Grid.Column="0" Spacing="8">
+                                <StackPanel HorizontalAlignment="Right"
+                                            Orientation="Horizontal"
+                                            Spacing="6">
+                                    <!-- Used memory view -->
+                                    <TextBlock x:Uid="/ViewResources/LaunchSettingsPage_UsedMemoryViewTextBlock"
+                                               VerticalAlignment="Center"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                    <Border VerticalAlignment="Center"
+                                            Background="{ThemeResource SystemFillColorAttentionBrush}"
+                                            CornerRadius="4">
+                                        <TextBlock Margin="6,2"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                                                   Style="{ThemeResource BodyStrongTextBlockStyle}">
+                                            <Run Text="{x:Bind MbToGbString(viewModel.UsedMemoryView), Mode=OneWay}" />
+                                            <Run Text="/" />
+                                            <Run Text="{x:Bind GetAvailableMemoryView(viewModel.UsedMemoryView, viewModel.MaxMemoryView), Mode=OneWay}" />
+                                            <Run Text="GB" />
+                                        </TextBlock>
+                                    </Border>
+                                </StackPanel>
+
+                                <!-- Game memory view -->
+                                <StackPanel HorizontalAlignment="Right"
+                                            Orientation="Horizontal"
+                                            Spacing="8">
+                                    <TextBlock x:Uid="/ViewResources/LaunchSettingsPage_GameMemoryViewTextBlock"
+                                               VerticalAlignment="Center"
+                                               Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                    <Border VerticalAlignment="Center"
+                                            Background="{ThemeResource SystemFillColorSuccessBrush}"
+                                            CornerRadius="4">
+                                        <TextBlock Margin="6,2"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                                                   Style="{ThemeResource BodyStrongTextBlockStyle}">
+                                            <Run Text="{x:Bind MbToGbString(viewModel.GameMemoryView), Mode=OneWay}" />
+                                            <Run Text="GB" />
+                                        </TextBlock>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                            <!-- Memory view -->
+                            <!-- Game memory -->
+                            <ProgressRing Grid.Column="1"
+                                          Width="50"
+                                          Height="50"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Foreground="{ThemeResource SystemFillColorSuccessBrush}"
+                                          IsIndeterminate="False"
+                                          Value="{x:Bind GetProgressRingMemoryView(viewModel.UsedMemoryView, viewModel.MaxMemoryView, viewModel.GameMemoryView), Mode=OneWay}" />
+
+                            <!-- Used memory -->
+                            <ProgressRing Grid.Column="1"
+                                          Width="50"
+                                          Height="50"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Foreground="{ThemeResource SystemFillColorAttentionBrush}"
+                                          IsIndeterminate="False"
+                                          Value="{x:Bind GetProgressRingMemoryView(viewModel.UsedMemoryView, viewModel.MaxMemoryView), Mode=OneWay}" />
+                        </Grid>
+                    </controls:SettingsCard>
+
+                    <!-- Game memory setting -->
+                    <controls:SettingsCard x:Name="MemorySettingCard"
+                                           x:Uid="/ViewResources/LaunchSettingsPage_SetGameMemorySettingsCard"
+                                           IsEnabled="{Binding IsAutoGameMemorySize, Mode=OneWay, Converter={StaticResource BoolInvertConverter}}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE67A;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- SetGameMemory button -->
+                        <Button Style="{ThemeResource AccentButtonStyle}">
+                            <!-- Button text -->
+                            <Button.Content>
+                                <TextBlock Style="{ThemeResource BodyStrongTextBlockStyle}">
+                                    <Run Text="{x:Bind MbToGbString(viewModel.MinGameMemory), Mode=OneWay}" />
+                                    <Run Text="/" />
+                                    <Run Text="{x:Bind MbToGbString(viewModel.MaxGameMemory), Mode=OneWay}" />
+                                    <Run Text="GB" />
+                                </TextBlock>
+                            </Button.Content>
+
+                            <!-- Button flyout -->
+                            <Button.Flyout>
+                                <Flyout Opened="OnMemoryFlyoutOpened" Placement="Left">
+                                    <!-- Flyout Style -->
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="MaxWidth" Value="800" />
+                                            <Setter Property="CornerRadius" Value="6" />
+                                            <Setter Property="Shadow">
+                                                <Setter.Value>
+                                                    <ThemeShadow />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Padding" Value="12" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <!-- Set game memory controls -->
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <!-- Min game memory NumberBox -->
+                                        <NumberBox x:Name="MinGameMemoryNumberBox"
+                                                   x:Uid="/ViewResources/LaunchSettingsPage_SetGameMinMemoryNumberBox"
+                                                   Grid.Row="0"
+                                                   MinWidth="70"
+                                                   IsEnabled="{Binding IsAutoGameMemorySize, Mode=OneWay, Converter={StaticResource BoolInvertConverter}}"
+                                                   LargeChange="128"
+                                                   Maximum="{Binding MaxMemoryView, Mode=OneWay}"
+                                                   Minimum="4"
+                                                   SmallChange="64"
+                                                   SpinButtonPlacementMode="Compact"
+                                                   ValidationMode="InvalidInputOverwritten"
+                                                   Value="{Binding MinGameMemory, Mode=TwoWay}">
+                                            <NumberBox.Header>
+                                                <TextBlock HorizontalAlignment="Right" Style="{ThemeResource BodyStrongTextBlockStyle}">
+                                                    <Run Text="128" />
+                                                    <Run Text="MB" />
+                                                </TextBlock>
+                                            </NumberBox.Header>
+
+                                            <!-- NumberBox event -->
+                                            <Interactivity:Interaction.Behaviors>
+                                                <Interactivity:EventTriggerBehavior EventName="LostFocus">
+                                                    <Interactivity:InvokeCommandAction Command="{Binding SetGameMemoryCommand}" />
+                                                </Interactivity:EventTriggerBehavior>
+                                            </Interactivity:Interaction.Behaviors>
+                                        </NumberBox>
+
+                                        <!-- Game memory RangeSelector -->
+                                        <controls:RangeSelector x:Name="GameMemoryRangeSelector"
+                                                                Grid.Row="0"
+                                                                MinWidth="300"
+                                                                VerticalAlignment="Bottom"
+                                                                IsEnabled="{Binding IsAutoGameMemorySize, Mode=OneWay, Converter={StaticResource BoolInvertConverter}}"
+                                                                Maximum="{Binding MaxMemoryView, Mode=OneWay}"
+                                                                Minimum="128"
+                                                                RangeEnd="{Binding MaxGameMemory, Mode=TwoWay}"
+                                                                RangeStart="{Binding MinGameMemory, Mode=TwoWay}"
+                                                                StepFrequency="128">
+                                            <Interactivity:Interaction.Behaviors>
+                                                <Interactivity:EventTriggerBehavior EventName="ThumbDragStarted">
+                                                    <!-- Disable CanWriteToJson -->
+                                                    <Interactivity:InvokeCommandAction Command="{Binding DisableNumberBoxEventCommand}" />
+                                                </Interactivity:EventTriggerBehavior>
+
+                                                <Interactivity:EventTriggerBehavior EventName="ThumbDragCompleted">
+                                                    <!-- Enable CanWriteToJson -->
+                                                    <Interactivity:InvokeCommandAction Command="{Binding EnableNumberBoxEventCommand}" />
+
+                                                    <!-- Set game memory -->
+                                                    <Interactivity:InvokeCommandAction Command="{Binding SetGameMemoryCommand}" />
+                                                </Interactivity:EventTriggerBehavior>
+                                            </Interactivity:Interaction.Behaviors>
+                                        </controls:RangeSelector>
+
+                                        <!-- Max game memory NumberBox -->
+                                        <NumberBox x:Name="MaxGameMemoryNumberBox"
+                                                   x:Uid="/ViewResources/LaunchSettingsPage_SetMaxGameMemoryNumberBox"
+                                                   Grid.Row="0"
+                                                   MinWidth="70"
+                                                   IsEnabled="{Binding IsAutoGameMemorySize, Mode=OneWay, Converter={StaticResource BoolInvertConverter}}"
+                                                   LargeChange="128"
+                                                   Maximum="{Binding MaxMemoryView, Mode=TwoWay}"
+                                                   Minimum="4"
+                                                   SmallChange="64"
+                                                   SpinButtonPlacementMode="Compact"
+                                                   ValidationMode="InvalidInputOverwritten"
+                                                   Value="{Binding MaxGameMemory, Mode=TwoWay}">
+                                            <NumberBox.Header>
+                                                <TextBlock HorizontalAlignment="Left" Style="{ThemeResource BodyStrongTextBlockStyle}">
+                                                    <Run Text="{Binding MaxMemoryView, Mode=OneWay}" />
+                                                    <Run Text="MB" />
+                                                </TextBlock>
+                                            </NumberBox.Header>
+
+                                            <!-- NumberBox event -->
+                                            <Interactivity:Interaction.Behaviors>
+                                                <Interactivity:EventTriggerBehavior EventName="LostFocus">
+                                                    <Interactivity:InvokeCommandAction Command="{Binding SetGameMemoryCommand}" />
+                                                </Interactivity:EventTriggerBehavior>
+                                            </Interactivity:Interaction.Behaviors>
+                                        </NumberBox>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+
+                <!-- Content -->
+                <ToggleSwitch x:Uid="/ViewResources/LaunchSettingsPage_MemorySizeIsAutoToggleSwitch" IsOn="{Binding IsAutoGameMemorySize, Mode=Twoway}" />
+
+            </controls:SettingsExpander>
+
+            <!-- Version isolation setting -->
+            <controls:SettingsCard x:Uid="/ViewResources/LaunchSettingsPage_VersionIsolationSettingsCard">
+                <!-- Icons -->
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8B4;" />
+                </controls:SettingsCard.HeaderIcon>
+
+                <!-- Content -->
+                <ComboBox ItemsSource="{Binding VersionIsolationFilters}" SelectedItem="{Binding VersionIsolationFilterSelectedItem, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Padding="0,2"
+                                        Orientation="Horizontal"
+                                        Spacing="6">
+                                <IconSourceElement Width="24"
+                                                   Height="24"
+                                                   VerticalAlignment="Center"
+                                                   IconSource="{Binding ViewIcon}" />
+                                <TextBlock VerticalAlignment="Center"
+                                           Text="{Binding ViewName}"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                    <Interactivity:Interaction.Behaviors>
+                        <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                            <Interactivity:InvokeCommandAction Command="{Binding SetVersionIsolationFilterIdCommand}" />
+                        </Interactivity:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </ComboBox>
+            </controls:SettingsCard>
+
+            <!-- Full screen setting -->
+            <controls:SettingsExpander x:Uid="/ViewResources/LaunchSettingsPage_WindowSettingsExpander">
+                <!-- Icons -->
+                <controls:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xE740;" />
+                </controls:SettingsExpander.HeaderIcon>
+
+                <controls:SettingsExpander.Items>
+                    <!-- Window Size setting -->
+                    <controls:SettingsCard x:Uid="/ViewResources/LaunchSettingsPage_WindowSizeSettingsCard" IsEnabled="{Binding IsFullscreen, Mode=OneWay, Converter={StaticResource BoolInvertConverter}}">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE61F;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <NumberBox LargeChange="64"
+                                       Minimum="2"
+                                       PlaceholderText="{Binding DefaultWindowSize.Width}"
+                                       SmallChange="32"
+                                       SpinButtonPlacementMode="Compact"
+                                       ValidationMode="InvalidInputOverwritten"
+                                       Value="{Binding WindowWidth, Mode=TwoWay}" />
+                            <FontIcon FontSize="16" Glyph="&#xE624;" />
+                            <NumberBox LargeChange="64"
+                                       Minimum="2"
+                                       PlaceholderText="{Binding DefaultWindowSize.Height}"
+                                       SmallChange="32"
+                                       SpinButtonPlacementMode="Compact"
+                                       ValidationMode="InvalidInputOverwritten"
+                                       Value="{Binding WindowHeight, Mode=TwoWay}" />
+                        </StackPanel>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+
+                <!-- Content -->
+                <ToggleSwitch IsOn="{Binding IsFullscreen, Mode=Twoway}" />
+            </controls:SettingsExpander>
+
+            <!-- Launcher name setting -->
+            <controls:SettingsCard x:Uid="/ViewResources/LaunchSettingsPage_LauncherNameSettingsCard">
+                <!-- Icons -->
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE8AC;" />
+                </controls:SettingsCard.HeaderIcon>
+
+                <!-- Content -->
+                <TextBox MaxWidth="360"
+                         PlaceholderText="{Binding DefaultLauncherName}"
+                         Text="{Binding LauncherName, Mode=TwoWay}"
+                         TextWrapping="Wrap">
+                    <Interactivity:Interaction.Behaviors>
+                        <Interactivity:EventTriggerBehavior EventName="LostFocus">
+                            <Interactivity:InvokeCommandAction Command="{Binding SetLauncherNameCommand}" />
+                        </Interactivity:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </TextBox>
+            </controls:SettingsCard>
+
+            <!-- Launcher name setting -->
+            <controls:SettingsCard x:Uid="/ViewResources/LaunchSettingsPage_LaunchServerSettingsCard"
+                                   Command="{Binding OpenMultiPlayerPageCommand}"
+                                   IsClickEnabled="True">
+                <!-- Icons -->
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE967;" />
+                </controls:SettingsCard.HeaderIcon>
+                <controls:SettingsCard.ActionIcon>
+                    <FontIcon Glyph="&#xE8A7;" />
+                </controls:SettingsCard.ActionIcon>
+            </controls:SettingsCard>
+
+            <!-- Advanced setting warning -->
+            <InfoBar x:Uid="/ViewResources/LaunchSettingsPage_AdvancedSettingWarningInfoBar"
+                     IsClosable="False"
+                     IsOpen="True"
+                     Severity="Warning" />
+
+            <!-- Jvm arguments setting -->
+            <controls:SettingsExpander x:Uid="/ViewResources/LaunchSettingsPage_JvmArgumentsSettingsCard">
+                <!-- Icons -->
+                <controls:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xEC7A;" />
+                </controls:SettingsExpander.HeaderIcon>
+
+                <controls:SettingsExpander.Items>
+                    <controls:SettingsCard x:Uid="/ViewResources/LaunchSettingsPage_FullJvmArgumentsTextSettingsCard">
+                        <!-- Icons -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE8AC;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <TextBox Width="360"
+                                 Text="{Binding FullJvmArgumentsText, Mode=TwoWay}"
+                                 TextWrapping="Wrap" />
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+
+                <!-- Content -->
+                <Button Command="{Binding OpenAddJvmArgumentsDialogCommand}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon VerticalAlignment="Center" Glyph="&#xE8A7;" />
+                        <TextBlock x:Uid="/ViewResources/LaunchSettingsPage_OpenJvmArgumentsDialogButton"
+                                   VerticalAlignment="Center"
+                                   HorizontalTextAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </controls:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

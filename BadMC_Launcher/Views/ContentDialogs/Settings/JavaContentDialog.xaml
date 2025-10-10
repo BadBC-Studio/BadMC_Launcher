@@ -1,0 +1,159 @@
+﻿<ContentDialog x:Class="BadMC_Launcher.Views.ContentDialogs.Settings.JavaContentDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+               xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+               xmlns:converters="using:CommunityToolkit.WinUI.Converters"
+               xmlns:local="using:BadMC_Launcher.Views.ContentDialogs.Settings"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:userControls="using:BadMC_Launcher.Views.UserControls"
+               x:Uid="/ViewResources/JavaContentDialog_ViewContentDialog"
+               CloseButtonStyle="{StaticResource AccentButtonStyle}"
+               Style="{ThemeResource DefaultContentDialogStyle}">
+    <ContentDialog.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolToOpacityConverter"
+                                          FalseValue="0"
+                                          TrueValue="1" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <converters:BoolToObjectConverter x:Key="BoolInvertConverter"
+                                          FalseValue="True"
+                                          TrueValue="False" />
+
+        <converters:DoubleToVisibilityConverter x:Key="DoubleToVisibilityConverter" GreaterThan="0" />
+
+        <converters:DoubleToObjectConverter x:Key="DoubleToOpacityConverter"
+                                            FalseValue="1"
+                                            GreaterThan="0"
+                                            TrueValue="0" />
+
+        <converters:DoubleToObjectConverter x:Key="DoubleToBoolConverter"
+                                            FalseValue="True"
+                                            GreaterThan="0"
+                                            TrueValue="False" />
+
+
+    </ContentDialog.Resources>
+
+    <Grid MinWidth="400"
+          MinHeight="300"
+          MaxWidth="600"
+          MaxHeight="360">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Tools -->
+        <StackPanel Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="8">
+
+            <!-- Add Java from local Button -->
+            <Button x:Name="AddJavaButton"
+                    Height="36"
+                    Padding="0"
+                    Command="{Binding AddJavaCommand}">
+                <StackPanel Margin="8,0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                    <FontIcon Glyph="&#xE8F4;" />
+                    <TextBlock x:Uid="/ViewResources/JavaContentDialog_AddJavaButton" />
+                </StackPanel>
+            </Button>
+
+            <!-- Search Java Button -->
+            <Button x:Name="SearchJavaButton"
+                    x:Uid="/ViewResources/JavaContentDialog_SearchJavaButton"
+                    Width="36"
+                    Height="36"
+                    Padding="0"
+                    Command="{Binding SearchJavasCommand}">
+                <Grid>
+                    <AnimatedIcon Width="26"
+                                  Height="26"
+                                  Visibility="{Binding IsEnabled, ElementName=SearchJavaButton, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <AnimatedIcon.Source>
+                            <animatedvisuals:AnimatedFindVisualSource />
+                        </AnimatedIcon.Source>
+                        <AnimatedIcon.FallbackIconSource>
+                            <FontIconSource Glyph="&#xE721;" />
+                        </AnimatedIcon.FallbackIconSource>
+                    </AnimatedIcon>
+
+                    <ProgressRing Width="20"
+                                  Height="20"
+                                  IsActive="{Binding IsEnabled, ElementName=SearchJavaButton, Converter={StaticResource BoolInvertConverter}}" />
+                </Grid>
+            </Button>
+
+            <!-- TODO: 催更催更催更！ -->
+            <!-- Download Java Button -->
+            <Button x:Uid="/ViewResources/JavaContentDialog_DownloadJavaButton"
+                    Width="36"
+                    Height="36"
+                    Padding="0"
+                    Command="{Binding DownloadJavaCommand}"
+                    IsEnabled="True">
+                <FontIcon Glyph="&#xEBD3;" />
+            </Button>
+
+            <!-- Enable AutoJava -->
+            <ToggleButton Height="36"
+                          Padding="0"
+                          Command="{Binding ChangeIsAutoJavaEnabledCommand}"
+                          IsChecked="{Binding IsAutoJavaEnabled, Mode=TwoWay}">
+                <StackPanel Margin="8,0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                    <FontIcon Glyph="&#xE945;" />
+                    <TextBlock x:Uid="/ViewResources/JavaContentDialog_AutoJavaButton" />
+                </StackPanel>
+            </ToggleButton>
+        </StackPanel>
+
+        <!-- Java list -->
+        <ListView x:Name="JavaEntryListView"
+                  Grid.Row="1"
+                  ItemTemplate="{StaticResource JavaItemsTemplateSecondary}"
+                  ItemsSource="{Binding JavasList}"
+                  SelectedItem="{Binding JavasListSelectedItem, Mode=TwoWay}">
+            <Interactivity:Interaction.Behaviors>
+                <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                    <Interactivity:InvokeCommandAction Command="{Binding SetActiveJavaCommand}" />
+                </Interactivity:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </ListView>
+
+        <!-- If there is no ontology in the list, a prompt is displayed. -->
+        <StackPanel x:Name="MinecraftFolderEmptyTipsStackPanel"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="{Binding JavasList.Count, Mode=OneWay, Converter={StaticResource DoubleToBoolConverter}}"
+                    Opacity="{Binding JavasList.Count, Mode=OneWay, Converter={StaticResource DoubleToOpacityConverter}}"
+                    Spacing="8"
+                    Visibility="{Binding JavasList.Count, Mode=OneWay, Converter={StaticResource DoubleToVisibilityConverter}, ConverterParameter=True}">
+            <!-- Animation -->
+            <StackPanel.OpacityTransition>
+                <ScalarTransition />
+            </StackPanel.OpacityTransition>
+            <FontIcon HorizontalAlignment="Center"
+                      FontSize="40"
+                      Glyph="&#xE8F6;" />
+            <TextBlock x:Uid="/ViewResources/JavaContentDialog_JavaListEmptyTipsTextBlock"
+                       HorizontalAlignment="Center"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}" />
+            <HyperlinkButton x:Uid="/ViewResources/JavaContentDialog_JavaListEmptyTipsHyperLinkButton"
+                             HorizontalAlignment="Center"
+                             Command="{Binding SearchJavasCommand}" />
+        </StackPanel>
+
+        <userControls:LoadingAnimation x:Uid="/ViewResources/JavaContentDialog_JavaListLoadingTipsLoadingAnimation"
+                                       Grid.Row="1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsLoading="{Binding IsJavasListLoading}" />
+    </Grid>
+</ContentDialog>

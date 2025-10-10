@@ -6,29 +6,26 @@
     See https://aka.platform.uno/using-uno-sdk#implicit-packages for more information regarding the Implicit Packages.
   -->
   <ItemGroup>
-    <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
-    <PackageVersion Include="BenchmarkDotNet.TestAdapter" Version="0.14.0" />
-    <PackageVersion Include="CommunityToolkit.Labs.WinUI.TokenView" Version="0.1.250220-build.2048" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Behaviors" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.MetadataControl" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.RichSuggestBox" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Converters" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Extensions" Version="8.2.250129-preview2" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Lottie" Version="8.1.240821" />
-    <PackageVersion Include="CommunityToolkit.WinUI.Triggers" Version="8.2.250129-preview2" />
+    <PackageVersion Include="CommunityToolkit.Labs.WinUI.Controls.MarkdownTextBlock" Version="0.1.251008-build.2333" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Animations" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Behaviors" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.ColorPicker" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.MetadataControl" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.RangeSelector" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.Segmented" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.Sizers" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" Version="8.2.250402" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Converters" Version="8.2.250402" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="FluentAssertions" Version="8.1.1" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.13.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.0-preview-25107-01" />
-    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.0" />
-    <PackageVersion Include="MinecraftLaunch" Version="4.0.0" />
-    <PackageVersion Include="NUnit" Version="4.3.2" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="5.0.0" />
+    <PackageVersion Include="FluentAssertions" Version="8.7.1" />
+    <PackageVersion Include="GEmojiSharp" Version="4.0.0" />
+    <PackageVersion Include="Hardware.Info" Version="101.1.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
+    <PackageVersion Include="MinecraftLaunch" Version="4.0.6-preview08" />
+    <PackageVersion Include="NUnit" Version="4.4.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="5.2.0" />
     <PackageVersion Include="GitHubActionsTestLogger" Version="2.4.1" />
-    <PackageVersion Include="Uno.Microsoft.Xaml.Behaviors.Interactivity.WinUI" Version="3.0.0-dev.17.g7c09b9114d" />
-    <PackageVersion Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.4.2" />
-    <PackageVersion Include="Uno.WinUI.DevServer.Messaging" Version="5.7.0-dev.649" />
   </ItemGroup>
 </Project>

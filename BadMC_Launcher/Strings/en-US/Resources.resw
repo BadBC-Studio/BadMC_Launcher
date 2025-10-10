@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -120,55 +120,154 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>BadMC Launcher</value>
   </data>
-  <data name="MinecraftConfig_MinecraftTitleNameResource" xml:space="preserve">
-    <value>BadMC Launcher - Let's MINECRAFT!</value>
+  <data name="Global_DefaultLauncherNameResource" xml:space="preserve">
+    <value>Launch with BadMCL (NOT BMCL!!!)</value>
   </data>
   <data name="LaunchPad_LaunchButtonTagDefaultResource" xml:space="preserve">
-    <value>No ontology selected_( ﾟДﾟ)ﾉ</value>
+    <value>No version selected _( ﾟДﾟ)ﾉ</value>
   </data>
-  <data name="LaunchPad_LaunchButtonNameResource.Text" xml:space="preserve">
-    <value>Launch Minecraft!</value>
-  </data>
-  <data name="LaunchPad_MinecraftListRefreshResource.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="LaunchPad_MinecraftListsManagerResource.Text" xml:space="preserve">
-    <value>Manage .minecraft folders</value>
-  </data>
-  <data name="LaunchPad_ViewLocalMinecraftFolderResource.Text" xml:space="preserve">
-    <value>Browse .minecraft folder</value>
-  </data>
-  <data name="LaunchPad_MinecraftEmptyListTipsTextResource.Text" xml:space="preserve">
-    <value>Can't find any ontologies.</value>
-  </data>
-  <data name="LaunchPad_MinecraftEmptyListTipsHyperLinkButtonResource.Text" xml:space="preserve">
-    <value>Go to the Ontology page to manage Minecraft ontologies.</value>
-  </data>
-  <data name="MainMenuPage_SearchResource.PlaceholderText" xml:space="preserve">
-    <value>Try searching for what? ψ(｀∇´)ψ</value>
-  </data>
-  <data name="MainPage_MainMenuNameResource" xml:space="preserve">
-    <value>Menu</value>
-  </data>
-  <data name="MainMenuPage_SearchFilterMinecraftEntryNameResource" xml:space="preserve">
-    <value>Minecraft Ontologies</value>
-  </data>
-  <data name="MainMenuPage_SearchFilterTagsResource.Text" xml:space="preserve">
-    <value>Filter search results</value>
-  </data>
-  <data name="Global_BetaTipResource.ToolTipService.ToolTip" xml:space="preserve">
-    <value>This feature is currently in beta status and may be changed or removed at any time.</value>
-  </data>
-  <data name="MainMenuPage_SearchFilterRealTimeToggleResource.Text" xml:space="preserve">
-    <value>Real-time updates</value>
-  </data>
-  <data name="MainMenuPage_SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="SideBar_SettingsNameResource" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="MainMenuPage_ScriptsButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Scripts</value>
+  <data name="SideBarSearchFilter_MinecraftEntryNameResource" xml:space="preserve">
+    <value>Minecraft versions</value>
   </data>
-  <data name="MainPage_MainSideBarNavigationView.PaneTitle" xml:space="preserve">
-    <value>Let's BadMC Launcher！ 🥳😝😈</value>
+  <data name="SettingsSideBarItems_LaunchSettingsPageName" xml:space="preserve">
+    <value>Minecraft settings</value>
+  </data>
+  <data name="Global_NullMinecraftFolderId" xml:space="preserve">
+    <value>Can't find the active Minecraft versions folder Σ(°ロ°)</value>
+  </data>
+  <data name="Global_NullMinecraftFolderPath" xml:space="preserve">
+    <value>Here you can display the active MInecraft versions folder path, but only if you have an active Minecraft versions folder path set 😏</value>
+  </data>
+  <data name="Global_NullJavaId" xml:space="preserve">
+    <value>Unable to find an active Java Runtime ( `ε´ )</value>
+  </data>
+  <data name="Global_NullJavaPath" xml:space="preserve">
+    <value>Set an active Java runtime first to display available Java runtimes 😰</value>
+  </data>
+  <data name="Global_AutoJavaPath" xml:space="preserve">
+    <value>Automatic settings</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore0" xml:space="preserve">
+    <value>It seems something went wrong! (This can't be happening! 😨)</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore3" xml:space="preserve">
+    <value>Minecraft might struggle a lot with this...... 😟</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore4" xml:space="preserve">
+    <value>This memory size is decent for Minecraft. 🙂</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore5" xml:space="preserve">
+    <value>This memory size is awesome! 😋</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore6" xml:space="preserve">
+    <value>Damn! You're rich! 😮</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore7" xml:space="preserve">
+    <value>HUH?????? Σ(っ °Д °;)っ</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore1" xml:space="preserve">
+    <value>Allocating more than total memory may crash Minecraft! 😨</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryScore2" xml:space="preserve">
+    <value>Wait! This memory might not even run Minecraft! 😰</value>
+  </data>
+  <data name="VersionIsolationFilter_ModLoaderFilterViewName" xml:space="preserve">
+    <value>Mod-installable versions only</value>
+  </data>
+  <data name="VersionIsolationFilter_ModifiedFilterViewName" xml:space="preserve">
+    <value>Modified versions only</value>
+  </data>
+  <data name="VersionIsolationFilter_DisabledFilterViewName" xml:space="preserve">
+    <value>Disabled for all versions</value>
+  </data>
+  <data name="VersionIsolationFilter_EnabledFilterViewName" xml:space="preserve">
+    <value>Enabled for all versions</value>
+  </data>
+  <data name="DefaultJvmArgments_Demo" xml:space="preserve">
+    <value>Launch Minecraft in Demo Mode.</value>
+  </data>
+  <data name="VersionIsolationFilter_NotReleaseFilterViewName" xml:space="preserve">
+    <value>All non-release versions</value>
+  </data>
+  <data name="ToastNotification_NotificationNotFoundTitle" xml:space="preserve">
+    <value>Can't find a suitable type to display this notification.</value>
+  </data>
+  <data name="DefaultJvmArgments_Unknown" xml:space="preserve">
+    <value>Untranslated parameter 😥</value>
+  </data>
+  <data name="ToastNotification_NotificationNotFoundMessage" xml:space="preserve">
+    <value>Notification card not found. Check the plugin for issues.</value>
+  </data>
+  <data name="ToastNotification_BackgroundErrorTitle" xml:space="preserve">
+    <value>Failed to set background image.</value>
+  </data>
+  <data name="ToastNotification_BackgroundErrorMessage" xml:space="preserve">
+    <value>Your background image path is incorrect:</value>
+  </data>
+  <data name="ToastNotification_BingWallpaperErrorTitle" xml:space="preserve">
+    <value>Problem fetching Bing wallpaper</value>
+  </data>
+  <data name="ToastNotification_BingWallpaperJsonErrorMessage" xml:space="preserve">
+    <value>Can't parse Bing API Json format. Submit an issue on our GitHub repo.</value>
+  </data>
+  <data name="ToastNotification_BingWallpaperGetErrorMessage" xml:space="preserve">
+    <value>Can't access Bing API now. Check your internet and retry.</value>
+  </data>
+  <data name="TipNotification_JavaNameErrorTitle" xml:space="preserve">
+    <value>Can't add this Java: Filename is invalid.</value>
+  </data>
+  <data name="TipNotification_JavaNameErrorMessage" xml:space="preserve">
+    <value>Make sure you're adding a program named 'java' or 'javaw', not the Java installer 😰</value>
+  </data>
+  <data name="TipNotification_JavaDuplicationTitle" xml:space="preserve">
+    <value>You've already added this Java.</value>
+  </data>
+  <data name="ToastNotification_ReadJsonErrorTitle" xml:space="preserve">
+    <value>Error reading Json file.</value>
+  </data>
+  <data name="ToastNotification_JsonErrorOpenJson_ButtonText" xml:space="preserve">
+    <value>Open the problematic Json file</value>
+  </data>
+  <data name="ToastNotification_JsonErrorDeleteJson_ButtonText" xml:space="preserve">
+    <value>Move Json file to Recycle Bin (Dangerous!!!)</value>
+  </data>
+  <data name="ToastNotification_UnauthorizedAccessErrorTitle" xml:space="preserve">
+    <value>Error: Access denied.</value>
+  </data>
+  <data name="ToastNotification_PathTooLongErrorTitle" xml:space="preserve">
+    <value>Error accessing file system: Path too long.</value>
+  </data>
+  <data name="ToastNotification_PathTooLongErrorMessage" xml:space="preserve">
+    <value>This path exceeds the system's maximum length limit. Check your file path (usually max 256 characters):</value>
+  </data>
+  <data name="ToastNotification_IOErrorTitle" xml:space="preserve">
+    <value>Can't access file due to IOException.</value>
+  </data>
+  <data name="ToastNotification_IOErrorMessage" xml:space="preserve">
+    <value>This file might be in use by another program:</value>
+  </data>
+  <data name="ToastNotification_Win32ErrorTitle" xml:space="preserve">
+    <value>Can't open path due to Win32Exception.</value>
+  </data>
+  <data name="ToastNotification_FileNotFoundErrorTitle" xml:space="preserve">
+    <value>Can't open path: File not found 😥</value>
+  </data>
+  <data name="SettingsSideBarItems_ThemeSettingsPageName" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="ToastNotification_JsonErrorMessage" xml:space="preserve">
+    <value>Looks like the Json file format is messed up. Continuing to change settings might make you lose new configurations.
+Some settings aren't synced and won't be saved. You might need to manually edit or delete the Json file based on this info.</value>
+  </data>
+  <data name="ToastNotification_UnauthorizedAccessErrorMessage" xml:space="preserve">
+    <value>Can't access the file - the system denied access.
+It might be set to read-only, or we don't have permission.
+There's an issue with the file at this path:</value>
+  </data>
+  <data name="TipNotification_MinecraftFolderDuplicationTitle" xml:space="preserve">
+    <value>You've already added this Minecraft folder.</value>
   </data>
 </root>

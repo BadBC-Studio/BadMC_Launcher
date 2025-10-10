@@ -1,0 +1,367 @@
+name: Publish App to Release
+
+on:
+  push:
+    paths:
+      - 'BadMC_Launcher/**'
+    branches-ignore:
+      - Backup
+
+  workflow_call:
+    secrets:
+      PRIVATE_KEY:
+        required: true
+
+env:
+  NET_VERSION: 10.0.100-rc1
+
+jobs:
+  PublishApp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [x64, arm64]
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Dependencies
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.NET_VERSION }}
+
+      - name: Install Dependencies
+        timeout-minutes: 60
+        continue-on-error: true
+        uses: "./.github/steps/install_dependencies"
+
+      - name: Install Dependencies(Linux)
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          sudo apt update
+          sudo snap refresh
+          sudo apt install -y snapd
+          sudo snap install core22
+          sudo snap install multipass
+          sudo snap install lxd
+          sudo snap install snapcraft --classic
+          sudo lxd init --minimal
+          sudo usermod --append --groups lxd $USER
+
+      - name: Setup MSBuild
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      # Build Application
+      - name: Build Uno Platform
+        run: |
+          cd BadMC_Launcher
+
+          dotnet nuget add source https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json -n CommunityToolkit-Labs
+
+          dotnet build --configuration Release
+
+      - name: Get Application Version
+        id: getAppVersion
+        uses: mavrosxristoforos/get-xml-info@2.0
+        with:
+          xml-file: 'BadMC_Launcher/BadMC_Launcher.csproj'
+          xpath: '//ApplicationVersion'
+
+      # Publish Windows
+      # Publish WinUI Packaged
+      - name: Set PFX
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          cd BadMC_Launcher
+          $certificatePath = "$env:RUNNER_TEMP/"
+          $privateFpx = "${{ secrets.PRIVATE_PFX }}"
+
+          $privateFpx | Set-Content -Path $certificatePath/BadMC_Launcher_TemporaryKey.pfx.b64
+          openssl base64 -d -in $certificatePath/BadMC_Launcher_TemporaryKey.pfx.b64 -out BadMC_Launcher_TemporaryKey.pfx
+
+      - name: Publish WinUI Packaged
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          cd BadMC_Launcher
+
+          $platform = "${{ matrix.platform }}"
+
+          msbuild /r `
+            /p:TargetFramework=net9.0-windows10.0.26100 `
+            /p:Configuration=Release `
+            /p:Platform=$platform `
+            /p:GenerateAppxPackageOnBuild=true `
+            /p:AppxBundle=Never `
+            /p:UapAppxPackageBuildMode=Sideloading `
+            /p:AppxPackageDir="publish/WinUIPackaged/$platform/" `
+            /p:AppxPackageSigningEnabled=true
+
+          $exePath = "publish/WinUIPackaged/$platform/*"
+          $zipDictionary = "publish/Zip"
+          $zipPath = "publish/Zip/BadMCLauncher_WinUIPack.$platform.${{ steps.getAppVersion.outputs.info }}.zip"
+
+          New-Item -ItemType Directory -Path $zipDictionary -Force
+          Compress-Archive -Path $exePath -DestinationPath $zipPath
+
+      - name: Upload WinUI Packaged Application
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: BadMCLauncher_WinUIPack.${{ matrix.platform }}.Artifact
+          path: |
+            BadMC_Launcher/publish/Zip/BadMCLauncher_WinUIPack.${{ matrix.platform }}.${{ steps.getAppVersion.outputs.info }}.zip
+
+      # Publish WinUI Unpackaged
+      - name: Publish WinUI Unpackaged
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          cd BadMC_Launcher
+
+          $platform = "${{ matrix.platform }}"
+
+          msbuild /r `
+            /t:publish `
+            /p:net10.0-windows10.0.26100 `
+            /p:Configuration=Release `
+            /p:Platform=$platform `
+            /p:PublishDir="publish/WinUIUnpackaged/$platform/"
+
+          $exePath = "publish/WinUIUnpackaged/$platform/*"
+          $zipDictionary = "publish/Zip"
+          $zipPath = "publish/Zip/BadMCLauncher_WinUIUnpack.$platform.${{ steps.getAppVersion.outputs.info }}.zip"
+
+          New-Item -ItemType Directory -Path $zipDictionary -Force
+          Compress-Archive -Path $exePath -DestinationPath $zipPath
+
+      - name: Upload WinUI Unpackaged Application
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: BadMCLauncher_WinUIUnpack.${{ matrix.platform }}.Artifact
+          path: |
+            BadMC_Launcher/publish/Zip/BadMCLauncher_WinUIUnpack.${{ matrix.platform }}.${{ steps.getAppVersion.outputs.info }}.zip
+
+      # Publish Windows Desktop
+      - name: Publish Windows Desktop
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          cd BadMC_Launcher
+
+          $platform = "${{ matrix.platform }}"
+
+          dotnet publish -f net10.0-desktop `
+            -r win-$platform `
+            -o "publish/WinDesktop/$platform/" `
+            -p:Platform=$platform `
+            -p:SelfContained=False `
+            -p:TargetFrameworks=net9.0-desktop
+
+          $exePath = "publish/WinDesktop/$platform/*"
+          $zipDictionary = "publish/Zip"
+          $zipPath = "publish/Zip/BadMCLauncher_WinDesktop.$platform.${{ steps.getAppVersion.outputs.info }}.zip"
+
+          New-Item -ItemType Directory -Path $zipDictionary -Force
+          Compress-Archive -Path $exePath -DestinationPath $zipPath
+
+      - name: Upload Windows Desktop Application
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: BadMCLauncher_WinDesktop.${{ matrix.platform }}.Artifact
+          path: |
+            BadMC_Launcher/publish/Zip/BadMCLauncher_WinDesktop.${{ matrix.platform }}.${{ steps.getAppVersion.outputs.info }}.zip
+
+      # Publish Windows Desktop(ClickOnce)
+      - name: Publish Windows Desktop(ClickOnce)
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          cd BadMC_Launcher
+
+          $platform = "${{ matrix.platform }}"
+
+          msbuild /m /r `
+            /target:Publish `
+            /p:Configuration=Release `
+            /p:SelfContained=False `
+            /p:PublishProfile="Properties/PublishProfiles/win-$platform-clickonce.pubxml" `
+            /p:TargetFramework=net10.0-desktop `
+            /p:UnoClickOncePublishDir="publish/WinDesktop_ClickOnce/$platform/"
+
+          $exePath = "publish/WinDesktop_ClickOnce/$platform/*"
+          $zipDictionary = "publish/Zip"
+          $zipPath = "publish/Zip/BadMCLauncher_WinDesktop_ClickOnce.$platform.${{ steps.getAppVersion.outputs.info }}.zip"
+
+          New-Item -ItemType Directory -Path $zipDictionary -Force
+          Compress-Archive -Path $exePath -DestinationPath $zipPath
+
+      - name: Upload Windows Desktop(ClickOnce) Application
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: BadMCLauncher_WinDesktop_ClickOnce.${{ matrix.platform }}.Artifact
+          path: |
+            BadMC_Launcher/publish/Zip/BadMCLauncher_WinDesktop_ClickOnce.${{ matrix.platform }}.${{ steps.getAppVersion.outputs.info }}.zip
+
+      # Publish MacOS
+      # Publish Mac Catalyst
+      # TODO: 草贵死我辣(っ °Д °;)っ
+      # - name: Publish Mac Catalyst
+      #   if: ${{ matrix.os == 'mac-latest' }}
+      #   run: |
+      #     cd BadMC_Launcher
+      #
+      #     $platform = "${{ matrix.platform }}"
+      #
+      #
+      #
+      #     $exePath = "publish/WinDesktop/$platform/*"
+      #     $zipDictionary = "publish/Zip"
+      #     $zipPath = "publish/Zip/BadMCLauncher_WinDesktop.$platform.${{ steps.getAppVersion.outputs.info }}.zip"
+      #
+      #     New-Item -ItemType Directory -Path $zipDictionary -Force
+      #     Compress-Archive -Path $exePath -DestinationPath $zipPath
+
+      # Publish MacOS Desktop
+      # TODO: 《让我们等Mac》
+      # - name: Publish MacOS Desktop
+      #   if: ${{ matrix.os == 'macos-latest' }}
+      #   run: |
+      #     cd BadMC_Launcher
+      #
+      #     $platform = "${{ matrix.platform }}"
+      #
+      #     msbuild /m /r `
+      #     /target:Publish `
+      #     /p:Configuration=Release `
+      #     /p:SelfContained=False `
+      #     /p:PublishProfile="Properties/PublishProfiles/win-$platform-clickonce.pubxml" `
+      #     /p:TargetFramework=net9.0-desktop `
+      #     /p:UnoClickOncePublishDir="publish/WinDesktop_ClickOnce/$platform/"
+      #
+      #     $exePath = "publish/WinDesktop_ClickOnce/$platform/*"
+      #     $zipDictionary = "publish/Zip"
+      #     $zipPath = "publish/Zip/BadMCLauncher_WinDesktop_ClickOnce.$platform.${{ steps.getAppVersion.outputs.info }}.zip"
+      #
+      #     New-Item -ItemType Directory -Path $zipDictionary -Force
+      #     Compress-Archive -Path $exePath -DestinationPath $zipPath
+      #
+      # - name: Upload Windows Desktop(ClickOnce) Application
+      #   if: ${{ matrix.os == 'windows-latest' }}
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: BadMCLauncher_WinDesktop_ClickOnce.${{ matrix.platform }}.Artifact
+      #     path: |
+      #       BadMC_Launcher/publish/Zip/BadMCLauncher_WinDesktop_ClickOnce.${{ matrix.platform }}.${{ steps.getAppVersion.outputs.info }}.zip
+
+      # Publish Linux
+      # 暂不支持.NET 9(草！)
+      # - name: Publish Linux Desktop
+      #   if: ${{ matrix.os == 'ubuntu-latest' }}
+      #   run: |
+      #     cd BadMC_Launcher
+      #
+      #     platform="${{ matrix.platform }}"
+      #
+      #     dotnet publish -f net9.0-desktop \
+      #       -p:Platform="$platform" \
+      #       -p:SelfContained=true \
+      #       -p:PackageFormat=snap \
+      #       -o "publish/LinuxDesktop/$platform/"
+      #
+      # - name: Upload Windows Desktop(ClickOnce) Application
+      #   if: ${{ matrix.os == 'ubuntu-latest' }}
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: BadMCLauncher_LinuxDesktop.${{ matrix.platform }}.${{ steps.getAppVersion.outputs.info }}
+      #     path: |
+      #       BadMC_Launcher/publish/LinuxDesktop/${{ matrix.platform }}/*
+
+  UploadRelease:
+    needs: PublishApp
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get Application Version
+        id: getAppVersion
+        uses: mavrosxristoforos/get-xml-info@2.0
+        with:
+          xml-file: 'BadMC_Launcher/BadMC_Launcher.csproj'
+          xpath: '//ApplicationVersion'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Check Release
+        id: CheckRelease
+        run: |
+          $branchPart = $env:GITHUB_REF.Split('/')[2]
+
+          if ($branchPart -ne "Release") {
+            echo "IsPreRelease=true" >> $env:GITHUB_OUTPUT
+          }
+          else {
+            echo "IsPreRelease=false" >> $env:GITHUB_OUTPUT
+          }
+
+          echo "Branch=$branchPart" >> $env:GITHUB_OUTPUT
+
+      - name: Generate Hashes Table
+        continue-on-error: true
+        id: MarkdownGetHashes
+        run: |
+          $markdownPath = "docs/Release.md"
+
+          $folderPath = "artifacts"
+
+          "`n`n## File Hash`n" | Add-Content -Path $markdownPath -Encoding UTF8
+          "| File | SHA-256 Hash |" | Add-Content -Path $markdownPath -Encoding UTF8
+          "|------|--------------|" | Add-Content -Path $markdownPath -Encoding UTF8
+
+          Get-ChildItem -Path "$folderPath" -File -Depth 3 | ForEach-Object {
+            $fileName = $_.Name
+
+            $hash = (Get-FileHash -Path $_.FullName -Algorithm SHA256).Hash
+
+            "| $fileName | ``$hash`` |" | Add-Content -Path $markdownPath -Encoding UTF8
+          }
+
+      - name: Create Build Summary
+        continue-on-error: true
+        run: |
+          $markdown = Get-Content -Path "docs/ActionSummary.md" -Raw
+
+          "$markdown" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8 -Append
+
+      - name: Read Markdown
+        id: ReadMd
+        uses: juliangruber/read-file-action@v1.1.7
+        with:
+          path: docs/Release.md
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.getAppVersion.outputs.info }}
+          name: ${{ steps.CheckRelease.outputs.Branch}} Publish - ${{ steps.getAppVersion.outputs.info }}
+          body: "${{ steps.ReadMd.outputs.content }}"
+          draft: false
+          prerelease: ${{ steps.CheckRelease.outputs.IsPreRelease}}
+          files: |
+            artifacts/**
+
+
+
+
+

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Global_BetaTipResource.ToolTipService.ToolTip" xml:space="preserve">
+    <value>This feature is currently in beta status and may be changed or removed at any time.</value>
+  </data>
+  <data name="JavaContentDialog_AddJavaButton.Text" xml:space="preserve">
+    <value>Add the Java Runtime from local</value>
+  </data>
+  <data name="JavaContentDialog_AutoJavaButton.Text" xml:space="preserve">
+    <value>Automatically Setting Java</value>
+  </data>
+  <data name="JavaContentDialog_DeleteJavaMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Delete (Does not affect local Java Runtime)</value>
+  </data>
+  <data name="JavaContentDialog_DownloadJavaButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Download new Java Runtime from the web</value>
+  </data>
+  <data name="JavaContentDialog_JavaListEmptyTipsHyperLinkButton.Content" xml:space="preserve">
+    <value>Search the Java Runtime from local</value>
+  </data>
+  <data name="JavaContentDialog_JavaListEmptyTipsTextBlock.Text" xml:space="preserve">
+    <value>Can't find any Java Runtimes</value>
+  </data>
+  <data name="JavaContentDialog_JavaListLoadingTipsLoadingAnimation.LoadDescription" xml:space="preserve">
+    <value>Getting Java Runtime......</value>
+  </data>
+  <data name="JavaContentDialog_LocalViewMenuFlyoutItem.Text" xml:space="preserve">
+    <value>View in File Manager</value>
+  </data>
+  <data name="JavaContentDialog_SearchJavaButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Search the Java Runtime from local</value>
+  </data>
+  <data name="JavaContentDialog_ViewContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="JavaContentDialog_ViewContentDialog.Title" xml:space="preserve">
+    <value>Manage Java Runtimes</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_JvmArgmentsEmptyTipsMessageTextBlock.Text" xml:space="preserve">
+    <value>But that might be a good thing 🫠</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_JvmArgmentsEmptyTipsTitleTextBlock.Text" xml:space="preserve">
+    <value>The Jvm parameter is empty.</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_JvmJvmArgumentsTokenizingTextBox.PlaceholderText" xml:space="preserve">
+    <value>Add a parameter (Hit Enter to confirm)</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_ViewContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_ViewContentDialog.Title" xml:space="preserve">
+    <value>Change Jvm parameters (advanced)</value>
+  </data>
+  <data name="LaunchPad_LaunchButtonNameResource.Text" xml:space="preserve">
+    <value>Launch Minecraft!</value>
+  </data>
+  <data name="LaunchPad_MinecraftEmptyListTipsHyperLinkButton.Text" xml:space="preserve">
+    <value>Go to the versions page to manage Minecraft ontologies folders.</value>
+  </data>
+  <data name="LaunchPad_MinecraftEmptyListTipsTextBlock.Text" xml:space="preserve">
+    <value>Can't find any Minecraft versions :(</value>
+  </data>
+  <data name="LaunchPad_MinecraftEntryListRefreshMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="LaunchPad_MinecraftEntryListsManagerMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Manage Minecraft versions folders</value>
+  </data>
+  <data name="LaunchPad_MinecraftFolderComboBox.PlaceholderText" xml:space="preserve">
+    <value>Minecraft versions folder not selected (´-ω-`)</value>
+  </data>
+  <data name="LaunchPad_ViewLocalMinecraftFolderMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Browse Minecraft version folder</value>
+  </data>
+  <data name="LaunchSettingsPage_AdvancedSettingWarningInfoBar.Message" xml:space="preserve">
+    <value>This setting lets you tweak things normal settings can’t reach, but we don’t recommend messing with JVM arguments unless you know what you’re doing. 
+If you think you’ve messed up or the game won’t start because of these settings, just clear all values to reset.</value>
+  </data>
+  <data name="LaunchSettingsPage_AdvancedSettingWarningInfoBar.Title" xml:space="preserve">
+    <value>Advanced setting warning</value>
+  </data>
+  <data name="LaunchSettingsPage_FullJvmArgumentsTextSettingsCard.Description" xml:space="preserve">
+    <value>Not recommend unless you need to paste a whole block of parameters.</value>
+  </data>
+  <data name="LaunchSettingsPage_FullJvmArgumentsTextSettingsCard.Header" xml:space="preserve">
+    <value>Directly change the Jvm startup parameters</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemorySizeSettingsExpander.Description" xml:space="preserve">
+    <value>Set the memory used when running Minecraft Java.</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemorySizeSettingsExpander.Header" xml:space="preserve">
+    <value>Minecraft memory usage</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryViewTextBlock.Text" xml:space="preserve">
+    <value>Minecraft usage</value>
+  </data>
+  <data name="LaunchSettingsPage_JavaPathSettingsCard.Description" xml:space="preserve">
+    <value>Setting the Java Runtime for Minecraft Java.</value>
+  </data>
+  <data name="LaunchSettingsPage_JavaPathSettingsCard.Header" xml:space="preserve">
+    <value>Set Java runtime</value>
+  </data>
+  <data name="LaunchSettingsPage_JvmArgumentsSettingsCard.Description" xml:space="preserve">
+    <value>The custom parameters for all activities are here, if they cannot be run, please delete them.</value>
+  </data>
+  <data name="LaunchSettingsPage_JvmArgumentsSettingsCard.Header" xml:space="preserve">
+    <value>Jvm parameters</value>
+  </data>
+  <data name="LaunchSettingsPage_LauncherNameSettingsCard.Description" xml:space="preserve">
+    <value>This info will show up at the bottom-right of the game’s splash screen and the top-left of the F3 debug menu.</value>
+  </data>
+  <data name="LaunchSettingsPage_LauncherNameSettingsCard.Header" xml:space="preserve">
+    <value>Custom Game Info</value>
+  </data>
+  <data name="LaunchSettingsPage_LaunchServerSettingsCard.Description" xml:space="preserve">
+    <value>We don’t support managing launch servers on the settings page. 😟</value>
+  </data>
+  <data name="LaunchSettingsPage_LaunchServerSettingsCard.Header" xml:space="preserve">
+    <value>Head to Multiplayer to manage servers that launch with the game</value>
+  </data>
+  <data name="LaunchSettingsPage_MemorySizeIsAutoToggleSwitch.OffContent" xml:space="preserve">
+    <value>Manual settings</value>
+  </data>
+  <data name="LaunchSettingsPage_MemorySizeIsAutoToggleSwitch.OnContent" xml:space="preserve">
+    <value>Automatic distribution</value>
+  </data>
+  <data name="LaunchSettingsPage_MemoryViewSettingsCard.Text" xml:space="preserve">
+    <value>Preview of memory usage</value>
+  </data>
+  <data name="LaunchSettingsPage_MinecraftFolderSettingsCard.Description" xml:space="preserve">
+    <value>Management of versions and resource storage locations.</value>
+  </data>
+  <data name="LaunchSettingsPage_MinecraftFolderSettingsCard.Header" xml:space="preserve">
+    <value>Manage Minecraft versions folders</value>
+  </data>
+  <data name="LaunchSettingsPage_OpenJvmArgumentsDialogButton.Text" xml:space="preserve">
+    <value>Use list editing</value>
+  </data>
+  <data name="LaunchSettingsPage_SetGameMemorySettingsCard.Header" xml:space="preserve">
+    <value>Set Minecraft runtime memory manually</value>
+  </data>
+  <data name="LaunchSettingsPage_SetGameMinMemoryNumberBox.PlaceholderText" xml:space="preserve">
+    <value>Min (MB)</value>
+  </data>
+  <data name="LaunchSettingsPage_SetMaxGameMemoryNumberBox.PlaceholderText" xml:space="preserve">
+    <value>Max (MB)</value>
+  </data>
+  <data name="LaunchSettingsPage_SetMemoryFlyoutTitleTextBlock.Text" xml:space="preserve">
+    <value>Set Minecraft min &amp; max memory manually (MB)</value>
+  </data>
+  <data name="LaunchSettingsPage_TipsInfoBar.Message" xml:space="preserve">
+    <value>This setting will have a lower priority than version-specific customizations.
+If something in this setting has been changed in an version-specific customization, that item will not take effect for this version.</value>
+  </data>
+  <data name="LaunchSettingsPage_TipsInfoBar.Title" xml:space="preserve">
+    <value>Lower priority</value>
+  </data>
+  <data name="LaunchSettingsPage_UsedMemoryViewTextBlock.Text" xml:space="preserve">
+    <value>Usage \ Available</value>
+  </data>
+  <data name="LaunchSettingsPage_VersionIsolationSettingsCard.Description" xml:space="preserve">
+    <value>Isolates Mods, Lights and Shadows of eligible Minecraft versions from other versions.</value>
+  </data>
+  <data name="LaunchSettingsPage_VersionIsolationSettingsCard.Header" xml:space="preserve">
+    <value>Version Isolation</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSettingsExpander.Description" xml:space="preserve">
+    <value>Full screen window when starting the game . (Window size is determined by the window size setting after closing)</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSettingsExpander.Header" xml:space="preserve">
+    <value>Full screen when launching the game</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSizeSettingsCard.Description" xml:space="preserve">
+    <value>Change the window size when the game is first started. (The setting does not work in full screen)</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSizeSettingsCard.Header" xml:space="preserve">
+    <value>Change the initial window size of the game (Width x Height)</value>
+  </data>
+  <data name="MainPage_MainSideBarNavigationView.PaneTitle" xml:space="preserve">
+    <value>Let's BadMC Launcher！ 🥳😝😈</value>
+  </data>
+  <data name="MainPage_SearchFilterTagsResource.Text" xml:space="preserve">
+    <value>Filter search results</value>
+  </data>
+  <data name="MainPage_SearchResource.PlaceholderText" xml:space="preserve">
+    <value>Try searching for what? ψ(｀∇´)ψ</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_AddMinecraftFolder_Button.Text" xml:space="preserve">
+    <value>Adding a new Minecraft versions folder</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_DeleteMinecraftFolderMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Delete (Does not affect local folder)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_LocalViewMenuFlyoutItem.Text" xml:space="preserve">
+    <value>View in File Manager</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderListEmptyTips_HyperLinkButton.Content" xml:space="preserve">
+    <value>Add a Minecraft versions folder from local</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderListEmptyTips_TextBlock.Text" xml:space="preserve">
+    <value>Can't find any Minecraft versions folder :(</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenameApply_Button.Content" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenameCancel_Button.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenameError_TextBlock.Text" xml:space="preserve">
+    <value>The name must not be empty or duplicated.</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenamePath_HyperLinkButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>etc! Renaming will be turned off when clicked! (Flyout is too hard so I can't fix it QAQ)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenamePath_TextBlock.Text" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRename_TextBlock.Text" xml:space="preserve">
+    <value>Rename (Does not affect local folder)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_RenameMinecraftFolderMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Rename (Does not affect local folder)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_ViewContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_ViewContentDialog.Title" xml:space="preserve">
+    <value>Manage Minecraft versions folders</value>
+  </data>
+  <data name="SettingsDashboardPage_SideBar.PaneTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorSettings_Expander.Header" xml:space="preserve">
+    <value>Application accent colors</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemes_Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemes_Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemes_System.Content" xml:space="preserve">
+    <value>Follow system</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemeSettingsCard.Description" xml:space="preserve">
+    <value>Set the color of the application display. (It is recommended to restart the application after making changes to prevent any possible color anomalies.)</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemeSettingsCard.Header" xml:space="preserve">
+    <value>Color theme</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorSettings_Expander.Description" xml:space="preserve">
+    <value>Sets the control's accent color.</value>
+  </data>
+  <data name="ColorPickerButton_Apply_Button.Content" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="ColorPickerButton_Cancel_Button.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorMode_SettingsCard.Description" xml:space="preserve">
+    <value>Set the theme color and accent color for the app.</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorMode_SettingsCard.Header" xml:space="preserve">
+    <value>Set theme color</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ColorMonet.Text" xml:space="preserve">
+    <value>Use Monet (get from color)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ColorMonetTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Use Monet to calculate all suitable colors from a single color as accent colors and apply them to your theme.</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_Custom.Text" xml:space="preserve">
+    <value>Custom colors</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_Custom.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Use custom colors as your accent colors.</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ImageMonet.Text" xml:space="preserve">
+    <value>Use Monet (from image)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ImageMonetTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Use Monet to select a suitable color from the background image as an accent color and apply it to your theme. (This setting requires you to set a background image.)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_System.Text" xml:space="preserve">
+    <value>Follow system</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_SystemTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Highlight color follow system. (Some systems may not work.)</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettings_Expander.Description" xml:space="preserve">
+    <value>Set the display scheme for the launcher background.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettings_Expander.Header" xml:space="preserve">
+    <value>Change launcher background</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_Acrylic.Text" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_AcrylicTip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Use Acrylic as your launcher background.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_BingWallpaper.Text" xml:space="preserve">
+    <value>Bing Daily Wallpaper</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_BingWallpaperTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Get daily Bing wallpapers from the Bing API and use them as launcher wallpapers (requires internet connection)</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_BingWallpaperWebTip.Text" xml:space="preserve">
+    <value>Network required</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_StaticImage.Text" xml:space="preserve">
+    <value>Static image</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_StaticImageTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Use static image as application background.</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorMonetAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>Manually select a color and use Monet to generate theme colors.</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorMonetAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>Manually select Monet theme color</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>Use Monet to select color from the background and change the entire theme system. This setting only takes effect when an image background is set.</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>Select from image background</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColorSelectTitle_TextBlock.Text" xml:space="preserve">
+    <value>Select a color.</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColorsEmptySubTitle_TextBlock.Text" xml:space="preserve">
+    <value>Did you forget to set the image background?</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColorsEmptyTitle_TextBlock.Text" xml:space="preserve">
+    <value>There are no colors here.</value>
+  </data>
+  <data name="ThemeSettingsPage_MonetPlan_SettingsCard.Description" xml:space="preserve">
+    <value>Select a Monet color scheme. (This may change your theme colors.)</value>
+  </data>
+  <data name="ThemeSettingsPage_MonetPlan_SettingsCard.Header" xml:space="preserve">
+    <value>Monet Solution</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColorAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>Manually select the accent color for the application. (Takes effect after restarting.)</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColorAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>Manually set accent color</value>
+  </data>
+  <data name="ThemeSettingsPage_SystemAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>Oh, right, what are you looking for? (´･ω･`)?</value>
+  </data>
+  <data name="ThemeSettingsPage_SystemAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>It's just a very cute little monster ヽ(*・ω・)ﾉ</value>
+  </data>
+  <data name="Global_NotImplemented_ToolTipRun.Text" xml:space="preserve">
+    <value>Due to issues encountered during implementation, this feature is currently unavailable.
+For more information, please visit the following link:</value>
+  </data>
+  <data name="Global_NotImplemented_Badge.Text" xml:space="preserve">
+    <value>Unrealized</value>
+  </data>
+  <data name="ThemeSettingsPage_StaticImage_SelectImageSettingsCard.Header" xml:space="preserve">
+    <value>Set background image</value>
+  </data>
+  <data name="ThemeSettingsPage_StaticImage_SelectImageSettingsCard.Description" xml:space="preserve">
+    <value>Select a background image from your local folder. (Only static images are supported.)</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColor_SelectColorSettingsCard.Header" xml:space="preserve">
+    <value>Set background color</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColor_SelectColorSettingsCard.Description" xml:space="preserve">
+    <value>Use the color picker to set the background color.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretch_StretchTypeSettingsCard.Header" xml:space="preserve">
+    <value>Set background image stretch mode</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretch_StretchTypeSettingsCard.Description" xml:space="preserve">
+    <value>How to set a background image to fit the launcher window.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_SolidColorTip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Use custom color as launcher background.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_SolidColor.Text" xml:space="preserve">
+    <value>Custom color</value>
+  </data>
+  <data name="BackgroundImageContentDialog_ContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="BackgroundImageContentDialog_ContentDialog.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+</root>

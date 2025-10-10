@@ -1,9 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <DataTemplate x:Key="MinecraftPathItemsTemplateSecondary">
-        <StackPanel Height="20" ToolTipService.ToolTip="{Binding MinecraftPath}">
-            <TextBlock VerticalAlignment="Center"
-                       Style="{ThemeResource BodyStrongTextBlockStyle}"
-                       Text="{Binding MinecraftId}" />
-        </StackPanel>
-    </DataTemplate>
-</ResourceDictionary>

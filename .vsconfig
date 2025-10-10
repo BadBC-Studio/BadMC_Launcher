@@ -11,8 +11,6 @@
     "Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites",
     "Microsoft.VisualStudio.Component.Debugger.JustInTime",
     "Microsoft.VisualStudio.Workload.ManagedDesktop",
-    "Microsoft.VisualStudio.Component.MonoDebugger",
-    "Microsoft.VisualStudio.ComponentGroup.Maui.All",
     "Microsoft.VisualStudio.Workload.NetCrossPlat",
     "Microsoft.VisualStudio.Workload.NetCoreTools"
   ]

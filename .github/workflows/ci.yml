@@ -53,7 +53,7 @@ jobs:
 
       - name: Build BadMC_Launcher.Tests (Release)
         shell: pwsh
-        run: msbuild ./BadMC_Launcher.Tests/BadMC_Launcher.Tests.csproj /p:Configuration=Release /p:OverrideTargetFramework=net9.0 /r
+        run: msbuild ./BadMC_Launcher.Tests/BadMC_Launcher.Tests.csproj /p:Configuration=Release /p:OverrideTargetFramework=net10.0 /r
 
       - name: Run Unit Tests
         shell: pwsh

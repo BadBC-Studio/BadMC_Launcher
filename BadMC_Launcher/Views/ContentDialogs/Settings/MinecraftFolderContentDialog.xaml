@@ -1,0 +1,164 @@
+﻿<ContentDialog x:Class="BadMC_Launcher.Views.ContentDialogs.Settings.MinecraftFolderContentDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+               xmlns:converters="using:CommunityToolkit.WinUI.Converters"
+               xmlns:local="using:BadMC_Launcher.Views.ContentDialogs.Settings"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               x:Uid="/ViewResources/MinecraftFolderContentDialog_ViewContentDialog"
+               CloseButtonStyle="{StaticResource AccentButtonStyle}"
+               Style="{ThemeResource DefaultContentDialogStyle}"
+               Unloaded="Page_Unloaded">
+    <ContentDialog.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolToOpacityConverter"
+                                          FalseValue="0"
+                                          TrueValue="1" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </ContentDialog.Resources>
+
+    <Grid MinWidth="400"
+          MinHeight="300"
+          MaxWidth="600"
+          MaxHeight="360">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- ToolBar -->
+        <Button x:Name="AddMinecraftFolderButton"
+                Grid.Row="0"
+                Height="36"
+                Padding="0"
+                HorizontalAlignment="Center"
+                Command="{Binding AddMinecraftFolderCommand}">
+
+            <!-- Rename Flyout -->
+            <FlyoutBase.AttachedFlyout>
+                <Flyout x:Name="RenameFlyout" Placement="Bottom">
+                    <Interactivity:Interaction.Behaviors>
+                        <Interactivity:EventTriggerBehavior EventName="Closed">
+                            <Interactivity:InvokeCommandAction Command="{Binding DeleteRenameFlyoutDataCommand}" />
+                        </Interactivity:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                    <StackPanel Grid.Row="0"
+                                Width="300"
+                                Margin="0,8"
+                                Spacing="8">
+                        <!-- Title TextBlock -->
+                        <TextBlock x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderRename_TextBlock" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+                        <StackPanel Spacing="4">
+                            <!-- Rename TextBox -->
+                            <TextBox x:Name="RenameTextBox"
+                                     PlaceholderText="{Binding OldRenameMinecraftFolderId}"
+                                     Text="{Binding NewRenameMinecraftFolderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                            <!-- Rename error tip TextBlock -->
+                            <TextBlock x:Name="RenameErrorTextBlock"
+                                       x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderRenameError_TextBlock"
+                                       Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                                       Visibility="Collapsed" />
+
+                            <!-- Set rename error state -->
+                            <Interactivity:Interaction.Behaviors>
+                                <!-- On can rename -->
+                                <Interactivity:DataTriggerBehavior Binding="{Binding IsCanRename}"
+                                                                   ComparisonCondition="Equal"
+                                                                   Value="True">
+                                    <Interactivity:ChangePropertyAction PropertyName="Visibility"
+                                                                        TargetObject="{Binding ElementName=RenameErrorTextBlock}"
+                                                                        Value="Collapsed" />
+                                    <Interactivity:ChangePropertyAction PropertyName="BorderBrush"
+                                                                        TargetObject="{Binding ElementName=RenameTextBox}"
+                                                                        Value="{ThemeResource TextBoxBorderThemeBrush}" />
+                                </Interactivity:DataTriggerBehavior>
+
+                                <!-- On can't rename -->
+                                <Interactivity:DataTriggerBehavior Binding="{Binding IsCanRename}"
+                                                                   ComparisonCondition="Equal"
+                                                                   Value="False">
+                                    <Interactivity:ChangePropertyAction PropertyName="Visibility"
+                                                                        TargetObject="{Binding ElementName=RenameErrorTextBlock}"
+                                                                        Value="Visible" />
+                                    <Interactivity:ChangePropertyAction PropertyName="BorderBrush"
+                                                                        TargetObject="{Binding ElementName=RenameTextBox}"
+                                                                        Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                                </Interactivity:DataTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </StackPanel>
+
+                        <!-- Rename Path TextBlock -->
+                        <TextBlock x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderRenamePath_TextBlock" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+                        <HyperlinkButton x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderRenamePath_HyperLinkButton"
+                                         Command="{Binding OpenMinecraftFolderCommand}"
+                                         Content="{Binding RenameMinecraftFolderPath}" />
+
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                            <!-- Apply Rename -->
+                            <Button x:Name="ApplyRenameButton"
+                                    x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderRenameApply_Button"
+                                    Command="{Binding ApplyRenameCommand}"
+                                    Style="{StaticResource AccentButtonStyle}">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Interactivity:EventTriggerBehavior EventName="KeyDown">
+                                        <Interactivity:InvokeCommandAction Command="{Binding TryApplyRenameCommand}" />
+                                    </Interactivity:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </Button>
+
+                            <!-- Cancel Rename -->
+                            <Button x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderRenameCancel_Button" Command="{Binding HideRenameFlyoutCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+            <StackPanel Margin="8,0"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <FontIcon Glyph="&#xE8F4;" />
+                <TextBlock x:Uid="/ViewResources/MinecraftFolderContentDialog_AddMinecraftFolder_Button" />
+            </StackPanel>
+        </Button>
+
+        <!-- MinecraftFolderEntry list -->
+        <ListView x:Name="MinecraftFolderEntryListView"
+                  Grid.Row="1"
+                  ItemTemplate="{StaticResource MinecraftFolderItemsTemplatePrimary}"
+                  ItemsSource="{Binding MinecraftFoldersList}"
+                  SelectedItem="{Binding MinecraftFoldersListSelectedItem, Mode=TwoWay}">
+            <Interactivity:Interaction.Behaviors>
+                <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                    <Interactivity:InvokeCommandAction Command="{Binding SetActiveMinecraftFolderCommand}" />
+                </Interactivity:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </ListView>
+
+        <!-- If there is no ontology in the list, a prompt is displayed. -->
+        <StackPanel x:Name="MinecraftFolderEmptyTipsStackPanel"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="{Binding IsMinecraftFoldersListEmpty}"
+                    Opacity="{Binding IsMinecraftFoldersListEmpty, Converter={StaticResource BoolToOpacityConverter}}"
+                    Spacing="8"
+                    Visibility="{Binding IsMinecraftFoldersListEmpty, Converter={StaticResource BoolToVisibilityConverter}}">
+            <!-- Animation -->
+            <StackPanel.OpacityTransition>
+                <ScalarTransition />
+            </StackPanel.OpacityTransition>
+            <FontIcon HorizontalAlignment="Center"
+                      FontSize="40"
+                      Glyph="&#xE8F6;" />
+            <TextBlock x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderListEmptyTips_TextBlock"
+                       HorizontalAlignment="Center"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}" />
+            <HyperlinkButton x:Uid="/ViewResources/MinecraftFolderContentDialog_MinecraftFolderListEmptyTips_HyperLinkButton"
+                             HorizontalAlignment="Center"
+                             Command="{Binding AddMinecraftFolderCommand}" />
+        </StackPanel>
+    </Grid>
+</ContentDialog>

@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+                    xmlns:controls="using:CommunityToolkit.WinUI.Controls">
+    <DataTemplate x:Key="MinecraftItemsTemplateSecondary">
+        <Grid ToolTipService.ToolTip="{Binding MinecraftId}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="48" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Minecraft icon -->
+            <Border Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Width="48"
+                    Height="48"
+                    Margin="6"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="4"
+                    CornerRadius="8">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding MinecraftImage}" Stretch="UniformToFill" />
+                </Border.Background>
+            </Border>
+
+            <!-- Minecraft id -->
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       Height="30"
+                       Margin="6,6,0,0"
+                       Style="{ThemeResource SubtitleTextBlockStyle}"
+                       Text="{Binding MinecraftId}"
+                       TextTrimming="CharacterEllipsis" />
+
+            <!-- Minecraft tags -->
+            <controls:MetadataControl Grid.Row="1"
+                                      Grid.Column="1"
+                                      Margin="6,0,6,0"
+                                      Items="{Binding MinecraftTags}" />
+
+            <!-- Minecraft star -->
+            <FontIcon x:Name="StarredIcon"
+                      Grid.RowSpan="2"
+                      Grid.Column="2"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Foreground="{ThemeResource AccentFillColorDefaultBrush}"
+                      Glyph="&#xE735;" />
+            <Interactivity:Interaction.Behaviors>
+                <Interactivity:DataTriggerBehavior Binding="{Binding IsStarred}" Value="True">
+                    <Interactivity:ChangePropertyAction PropertyName="Opacity"
+                                                        TargetObject="{Binding ElementName=StarredIcon}"
+                                                        Value="1" />
+                </Interactivity:DataTriggerBehavior>
+                <Interactivity:DataTriggerBehavior Binding="{Binding IsStarred}" Value="False">
+                    <Interactivity:ChangePropertyAction PropertyName="Opacity"
+                                                        TargetObject="{Binding ElementName=StarredIcon}"
+                                                        Value="0" />
+                </Interactivity:DataTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

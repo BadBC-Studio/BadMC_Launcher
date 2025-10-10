@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Global_BetaTipResource.ToolTipService.ToolTip" xml:space="preserve">
+    <value>该功能目前为测试状态，随时可能更改或删除.</value>
+  </data>
+  <data name="JavaContentDialog_AddJavaButton.Text" xml:space="preserve">
+    <value>从本地添加 Java 运行时</value>
+  </data>
+  <data name="JavaContentDialog_AutoJavaButton.Text" xml:space="preserve">
+    <value>自动设置 Java</value>
+  </data>
+  <data name="JavaContentDialog_DeleteJavaMenuFlyoutItem.Text" xml:space="preserve">
+    <value>删除 (不影响本地 Java 运行时)</value>
+  </data>
+  <data name="JavaContentDialog_DownloadJavaButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从网络下载新的 Java 运行时 暂未实现(嘿嘿🤤)</value>
+  </data>
+  <data name="JavaContentDialog_JavaListEmptyTipsHyperLinkButton.Content" xml:space="preserve">
+    <value>在本地搜索 Java 运行时</value>
+  </data>
+  <data name="JavaContentDialog_JavaListEmptyTipsTextBlock.Text" xml:space="preserve">
+    <value>找不到任何 Java 运行时</value>
+  </data>
+  <data name="JavaContentDialog_JavaListLoadingTipsLoadingAnimation.LoadDescription" xml:space="preserve">
+    <value>正在获取 Java 运行时......</value>
+  </data>
+  <data name="JavaContentDialog_LocalViewMenuFlyoutItem.Text" xml:space="preserve">
+    <value>在文件管理器中显示</value>
+  </data>
+  <data name="JavaContentDialog_SearchJavaButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>在本地搜索 Java 运行时</value>
+  </data>
+  <data name="JavaContentDialog_ViewContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="JavaContentDialog_ViewContentDialog.Title" xml:space="preserve">
+    <value>管理 Java 运行时</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_JvmArgmentsEmptyTipsMessageTextBlock.Text" xml:space="preserve">
+    <value>但这没准是件好事 🫠</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_JvmArgmentsEmptyTipsTitleTextBlock.Text" xml:space="preserve">
+    <value>Jvm 参数是空的.</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_JvmJvmArgumentsTokenizingTextBox.PlaceholderText" xml:space="preserve">
+    <value>添加参数(需要使用 + 或 Enter 应用)</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_ViewContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="JvmArgumentsContentDialog_ViewContentDialog.Title" xml:space="preserve">
+    <value>更改 Jvm 参数(高级)</value>
+  </data>
+  <data name="LaunchPad_LaunchButtonNameResource.Text" xml:space="preserve">
+    <value>启动 Minecraft!</value>
+  </data>
+  <data name="LaunchPad_MinecraftEmptyListTipsHyperLinkButton.Text" xml:space="preserve">
+    <value>转到本体页面以管理 Minecraft 版本文件夹.</value>
+  </data>
+  <data name="LaunchPad_MinecraftEmptyListTipsTextBlock.Text" xml:space="preserve">
+    <value>找不到任何 Minecraft 版本 :(</value>
+  </data>
+  <data name="LaunchPad_MinecraftEntryListRefreshMenuFlyoutItem.Text" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="LaunchPad_MinecraftEntryListsManagerMenuFlyoutItem.Text" xml:space="preserve">
+    <value>管理 Minecraft 版本文件夹</value>
+  </data>
+  <data name="LaunchPad_MinecraftFolderComboBox.PlaceholderText" xml:space="preserve">
+    <value>未选择 Minecraft 版本文件夹 (´-ω-`)</value>
+  </data>
+  <data name="LaunchPad_ViewLocalMinecraftFolderMenuFlyoutItem.Text" xml:space="preserve">
+    <value>浏览 Minecraft 版本文件夹</value>
+  </data>
+  <data name="LaunchSettingsPage_AdvancedSettingWarningInfoBar.Message" xml:space="preserve">
+    <value>这个设置可以修改很多普通设置无法达到的东西，但我们不建议不了解 JVM参数的人修改这些.
+如果你认为你搞砸了或者游戏因为这些设置无法启动，请清除所有值.</value>
+  </data>
+  <data name="LaunchSettingsPage_AdvancedSettingWarningInfoBar.Title" xml:space="preserve">
+    <value>高级设置警告</value>
+  </data>
+  <data name="LaunchSettingsPage_FullJvmArgumentsTextSettingsCard.Description" xml:space="preserve">
+    <value>除非需要粘贴整块参数, 否则不推荐.</value>
+  </data>
+  <data name="LaunchSettingsPage_FullJvmArgumentsTextSettingsCard.Header" xml:space="preserve">
+    <value>直接更改 Jvm 启动参数</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemorySizeSettingsExpander.Description" xml:space="preserve">
+    <value>设置运行 Minecraft Java 时所使用的内存.</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemorySizeSettingsExpander.Header" xml:space="preserve">
+    <value>Minecraft 使用内存</value>
+  </data>
+  <data name="LaunchSettingsPage_GameMemoryViewTextBlock.Text" xml:space="preserve">
+    <value>Minecraft 最大已分配</value>
+  </data>
+  <data name="LaunchSettingsPage_JavaPathSettingsCard.Description" xml:space="preserve">
+    <value>为 Minecraft Java 设置 Java 运行时.</value>
+  </data>
+  <data name="LaunchSettingsPage_JavaPathSettingsCard.Header" xml:space="preserve">
+    <value>设置 Java 运行时</value>
+  </data>
+  <data name="LaunchSettingsPage_JvmArgumentsSettingsCard.Description" xml:space="preserve">
+    <value>所有活动的自定义参数都在这里，如果无法运行，请删除它们.</value>
+  </data>
+  <data name="LaunchSettingsPage_JvmArgumentsSettingsCard.Header" xml:space="preserve">
+    <value>Jvm 参数</value>
+  </data>
+  <data name="LaunchSettingsPage_LauncherNameSettingsCard.Description" xml:space="preserve">
+    <value>这些信息将显示在游戏封面的右下角和 F3 调试信息的左上角.</value>
+  </data>
+  <data name="LaunchSettingsPage_LauncherNameSettingsCard.Header" xml:space="preserve">
+    <value>自定义游戏信息</value>
+  </data>
+  <data name="LaunchSettingsPage_LaunchServerSettingsCard.Description" xml:space="preserve">
+    <value>我们不支持在设置页面管理启动服务器. 😟</value>
+  </data>
+  <data name="LaunchSettingsPage_LaunchServerSettingsCard.Header" xml:space="preserve">
+    <value>转到 多人游戏 以管理启动时服务器</value>
+  </data>
+  <data name="LaunchSettingsPage_MemorySizeIsAutoToggleSwitch.OffContent" xml:space="preserve">
+    <value>手动设置</value>
+  </data>
+  <data name="LaunchSettingsPage_MemorySizeIsAutoToggleSwitch.OnContent" xml:space="preserve">
+    <value>自动分配</value>
+  </data>
+  <data name="LaunchSettingsPage_MemoryViewSettingsCard.Text" xml:space="preserve">
+    <value>内存预览</value>
+  </data>
+  <data name="LaunchSettingsPage_MinecraftFolderSettingsCard.Description" xml:space="preserve">
+    <value>对版本以及资源的存储位置进行管理.</value>
+  </data>
+  <data name="LaunchSettingsPage_MinecraftFolderSettingsCard.Header" xml:space="preserve">
+    <value>管理 Minecraft 版本文件夹</value>
+  </data>
+  <data name="LaunchSettingsPage_OpenJvmArgumentsDialogButton.Text" xml:space="preserve">
+    <value>使用列表编辑</value>
+  </data>
+  <data name="LaunchSettingsPage_SetGameMemorySettingsCard.Header" xml:space="preserve">
+    <value>手动设置 Minecraft 运行时内存</value>
+  </data>
+  <data name="LaunchSettingsPage_SetGameMinMemoryNumberBox.PlaceholderText" xml:space="preserve">
+    <value>最小 (MB)</value>
+  </data>
+  <data name="LaunchSettingsPage_SetMaxGameMemoryNumberBox.PlaceholderText" xml:space="preserve">
+    <value>最大 (MB)</value>
+  </data>
+  <data name="LaunchSettingsPage_SetMemoryFlyoutTitleTextBlock.Text" xml:space="preserve">
+    <value>手动设置 Minecraft 最大 &amp; 最小内存</value>
+  </data>
+  <data name="LaunchSettingsPage_TipsInfoBar.Message" xml:space="preserve">
+    <value>该设置的优先级将比特定于版本的自定义设置更低.
+如果这个设置的某些项已在特定于版本的自定义设置中更改，该项将不会对这个版本生效.</value>
+  </data>
+  <data name="LaunchSettingsPage_TipsInfoBar.Title" xml:space="preserve">
+    <value>更低的优先级</value>
+  </data>
+  <data name="LaunchSettingsPage_UsedMemoryViewTextBlock.Text" xml:space="preserve">
+    <value>已使用 \ 可用</value>
+  </data>
+  <data name="LaunchSettingsPage_VersionIsolationSettingsCard.Description" xml:space="preserve">
+    <value>将符合条件的 Minecraft 版本的 Mod, 光影等资源包与其它本体隔离.</value>
+  </data>
+  <data name="LaunchSettingsPage_VersionIsolationSettingsCard.Header" xml:space="preserve">
+    <value>版本隔离</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSettingsExpander.Description" xml:space="preserve">
+    <value>启动游戏时全屏窗口. (关闭后由窗口大小设置决定窗口大小)</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSettingsExpander.Header" xml:space="preserve">
+    <value>启动游戏时全屏</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSizeSettingsCard.Description" xml:space="preserve">
+    <value>更改游戏在刚启动时窗口大小. (全屏时设置不生效)</value>
+  </data>
+  <data name="LaunchSettingsPage_WindowSizeSettingsCard.Header" xml:space="preserve">
+    <value>更改游戏初始窗口大小 (宽度 x 高度)</value>
+  </data>
+  <data name="MainPage_MainSideBarNavigationView.PaneTitle" xml:space="preserve">
+    <value>让我们一起 BadMC Launcher！ 🥳😝😈</value>
+  </data>
+  <data name="MainPage_SearchFilterTagsResource.Text" xml:space="preserve">
+    <value>筛选搜索结果</value>
+  </data>
+  <data name="MainPage_SearchResource.PlaceholderText" xml:space="preserve">
+    <value>搜点什么？ψ(｀∇´)ψ</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_AddMinecraftFolder_Button.Text" xml:space="preserve">
+    <value>添加新的 Minecraft 版本文件夹</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_DeleteMinecraftFolderMenuFlyoutItem.Text" xml:space="preserve">
+    <value>删除 (不影响本地文件夹)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_LocalViewMenuFlyoutItem.Text" xml:space="preserve">
+    <value>在文件管理器中显示</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderListEmptyTips_HyperLinkButton.Content" xml:space="preserve">
+    <value>从本地添加 Minecraft 版本文件夹</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderListEmptyTips_TextBlock.Text" xml:space="preserve">
+    <value>找不到任何 Minecraft 版本文件夹 :(</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenameApply_Button.Content" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenameCancel_Button.Content" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenameError_TextBlock.Text" xml:space="preserve">
+    <value>名称不可为空或与其它项重名.</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenamePath_HyperLinkButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>等等！点击时将会关闭重命名！（Flyout太难了修不了 QAQ）</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRenamePath_TextBlock.Text" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_MinecraftFolderRename_TextBlock.Text" xml:space="preserve">
+    <value>重命名 (不影响本地文件夹)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_RenameMinecraftFolderMenuFlyoutItem.Text" xml:space="preserve">
+    <value>重命名 (不影响本地文件夹)</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_ViewContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="MinecraftFolderContentDialog_ViewContentDialog.Title" xml:space="preserve">
+    <value>管理 Minecraft 版本文件夹</value>
+  </data>
+  <data name="SettingsDashboardPage_SideBar.PaneTitle" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemeSettingsCard.Header" xml:space="preserve">
+    <value>颜色主题</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemeSettingsCard.Description" xml:space="preserve">
+    <value>设置应用显示的颜色. (建议在修改后重启应用以防止任何可能的颜色异常.)</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemes_System.Content" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemes_Light.Content" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorThemes_Dark.Content" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorSettings_Expander.Header" xml:space="preserve">
+    <value>应用强调色</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorSettings_Expander.Description" xml:space="preserve">
+    <value>设置控件的强调色.</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorMode_SettingsCard.Header" xml:space="preserve">
+    <value>设置主题色</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorMode_SettingsCard.Description" xml:space="preserve">
+    <value>设置应用的主题色和强调色.</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_System.Text" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_Custom.Text" xml:space="preserve">
+    <value>自定义颜色</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ImageMonet.Text" xml:space="preserve">
+    <value>使用 Monet (从图片获取)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ColorMonet.Text" xml:space="preserve">
+    <value>使用 Monet (从颜色获取)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_Custom.ToolTipService.ToolTip" xml:space="preserve">
+    <value>使用自定义颜色当作你的强调色.</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_SystemTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>强调色跟随系统. (有些系统可能不生效.)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ImageMonetTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>使用 Monet 从背景图片中选取一个合适的颜色当作强调色并将其应用到你的主题中. (该设置要求你必须设置背景图像.)</value>
+  </data>
+  <data name="ThemeSettingsPage_AccentColorThemes_ColorMonetTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>使用 Monet 从一个颜色中计算出所有合适的颜色当作强调色并将其应用到你的主题中.</value>
+  </data>
+  <data name="ThemeSettingsPage_SystemAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>这只是一只非常可爱的小怪物 ヽ(*・ω・)ﾉ</value>
+  </data>
+  <data name="ThemeSettingsPage_SystemAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>啊对了, 你在找什么? (´･ω･`)?</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColorAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>手动设置强调色</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColorAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>通过手动选取颜色设置应用的强调色. (重启后生效)</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>从图片背景中选择</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>使用 Monet 从背景中选择颜色并更改整个主题系统, 该设置仅在设置了图片背景的情况下生效.</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorMonetAccentColor_SettingsCard.Header" xml:space="preserve">
+    <value>手动选取 Monet 主题色</value>
+  </data>
+  <data name="ThemeSettingsPage_ColorMonetAccentColor_SettingsCard.Description" xml:space="preserve">
+    <value>手动选取一个颜色并使用 Monet 生成主题色.</value>
+  </data>
+  <data name="ThemeSettingsPage_MonetPlan_SettingsCard.Header" xml:space="preserve">
+    <value>Monet 方案</value>
+  </data>
+  <data name="ThemeSettingsPage_MonetPlan_SettingsCard.Description" xml:space="preserve">
+    <value>选择一个 Monet 颜色方案. (这可能会更改你的主题颜色.)</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColorSelectTitle_TextBlock.Text" xml:space="preserve">
+    <value>选择一个颜色.</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColorsEmptyTitle_TextBlock.Text" xml:space="preserve">
+    <value>这里没有颜色.</value>
+  </data>
+  <data name="ThemeSettingsPage_ImageMonetAccentColorsEmptySubTitle_TextBlock.Text" xml:space="preserve">
+    <value>是否忘记了设置图像背景?</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettings_Expander.Header" xml:space="preserve">
+    <value>更改启动器背景</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettings_Expander.Description" xml:space="preserve">
+    <value>设置启动器背景的显示方案.</value>
+  </data>
+  <data name="ColorPickerButton_Apply_Button.Content" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="ColorPickerButton_Cancel_Button.Content" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Global_NotImplemented_Badge.Text" xml:space="preserve">
+    <value>未实现</value>
+  </data>
+  <data name="Global_NotImplemented_ToolTipRun.Text" xml:space="preserve">
+    <value>由于在实现功能时出现问题, 该功能目前不可用.
+从该链接中获取详细信息:</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_StaticImageTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>使用静态图片作为应用背景.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_StaticImage.Text" xml:space="preserve">
+    <value>静态图片</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_BingWallpaperTips.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从 Bing API 获取每日 Bing 壁纸并当作启动器壁纸 (需要网络连接)</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_BingWallpaper.Text" xml:space="preserve">
+    <value>Bing 每日壁纸</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_BingWallpaperWebTip.Text" xml:space="preserve">
+    <value>需要网络</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_AcrylicTip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>使用 Acrylic (亚克力) 作为你的启动器背景.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_Acrylic.Text" xml:space="preserve">
+    <value>Acrylic (亚克力)</value>
+  </data>
+  <data name="ThemeSettingsPage_StaticImage_SelectImageSettingsCard.Header" xml:space="preserve">
+    <value>设置背景图片</value>
+  </data>
+  <data name="ThemeSettingsPage_StaticImage_SelectImageSettingsCard.Description" xml:space="preserve">
+    <value>从本地文件夹选取一张背景图片. (仅支持静态图片)</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColor_SelectColorSettingsCard.Header" xml:space="preserve">
+    <value>设置背景颜色</value>
+  </data>
+  <data name="ThemeSettingsPage_SolidColor_SelectColorSettingsCard.Description" xml:space="preserve">
+    <value>使用颜色选取器设置背景颜色.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretch_StretchTypeSettingsCard.Header" xml:space="preserve">
+    <value>设置背景图片拉伸模式</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretch_StretchTypeSettingsCard.Description" xml:space="preserve">
+    <value>设置背景图片如何适应启动器窗口.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_SolidColorTip.ToolTipService.ToolTip" xml:space="preserve">
+    <value>使用自定义颜色作为启动器背景.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundType_SolidColor.Text" xml:space="preserve">
+    <value>自定义颜色</value>
+  </data>
+  <data name="ThemeSettingsPage_StaticImage_SelectImageButton.Text" xml:space="preserve">
+    <value>更改背景图片</value>
+  </data>
+  <data name="BackgroundImageContentDialog_StaticImagesEmptyTitle_TextBlock.Text" xml:space="preserve">
+    <value>这里没有图片.</value>
+  </data>
+  <data name="BackgroundImageContentDialog_StaticImagesEmptySubTitle_TextBlock.Text" xml:space="preserve">
+    <value>仅支持 PNG, JPEG 和 JPG.</value>
+  </data>
+  <data name="BackgroundImageContentDialog_ContentDialog.Title" xml:space="preserve">
+    <value>选择一个图片</value>
+  </data>
+  <data name="BackgroundImageContentDialog_ContentDialog.PrimaryButtonText" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="BackgroundImageContentDialog_ContentDialog.CloseButtonText" xml:space="preserve">
+    <value>取消</value>
+  </data>
+</root>

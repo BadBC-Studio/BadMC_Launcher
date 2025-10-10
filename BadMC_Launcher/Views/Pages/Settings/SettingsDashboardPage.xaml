@@ -1,0 +1,46 @@
+﻿<Page x:Class="BadMC_Launcher.Views.Pages.Settings.SettingsDashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:BadMC_Launcher.Views.Pages.Settings"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      CornerRadius="8"
+      Unloaded="Page_Unloaded"
+      mc:Ignorable="d">
+
+    <Grid>
+        <NavigationView x:Name="SideBar"
+                        x:Uid="/ViewResources/SettingsDashboardPage_SideBar"
+                        FooterMenuItemsSource="{Binding FootSideBarItems}"
+                        Header="{Binding SideBarSelectedItem.PageHead}"
+                        IsSettingsVisible="False"
+                        MenuItemsSource="{Binding SideBarItems}"
+                        SelectedItem="{Binding SideBarSelectedItem, Mode=TwoWay}">
+            <NavigationView.MenuItemTemplate>
+                <DataTemplate>
+                    <NavigationViewItem Content="{Binding ItemName}"
+                                        Icon="{Binding ItemIcon}"
+                                        InfoBadge="{Binding ItemInfoBadge}" />
+                </DataTemplate>
+            </NavigationView.MenuItemTemplate>
+
+            <!-- SideBar Frame -->
+            <Frame x:Name="SideBarFrame" Margin="0,8,0,0">
+                <!-- SideBarFrame Event -->
+                <Interactivity:Interaction.Behaviors>
+                    <Interactivity:EventTriggerBehavior EventName="Loaded">
+                        <Interactivity:InvokeCommandAction Command="{Binding SetInitSelectedItemCommand}" />
+                    </Interactivity:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Frame>
+
+            <!-- SideBar Event -->
+            <Interactivity:Interaction.Behaviors>
+                <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                    <Interactivity:InvokeCommandAction Command="{Binding NavigateToPageCommand}" />
+                </Interactivity:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </NavigationView>
+    </Grid>
+</Page>

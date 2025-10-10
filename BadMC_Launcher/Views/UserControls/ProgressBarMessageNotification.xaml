@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="BadMC_Launcher.Views.UserControls.ProgressBarMessageNotification"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:animations="using:CommunityToolkit.WinUI.Animations"
+             xmlns:local="using:BadMC_Launcher.Views.UserControls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             IsHitTestVisible="False"
+             Loaded="OnControlLoaded"
+             Translation="430,0,0">
+    <!-- Animations -->
+    <animations:Explicit.Animations>
+        <!-- Open animation -->
+        <animations:AnimationSet x:Name="OpenNotificationAnimation">
+            <animations:TranslationAnimation EasingMode="EaseOut"
+                                             EasingType="Quintic"
+                                             To="-430,0,0"
+                                             Duration="0:0:0.4" />
+        </animations:AnimationSet>
+
+        <!-- Close animation -->
+        <animations:AnimationSet x:Name="CloseNotificationAnimation">
+            <animations:TranslationAnimation EasingMode="EaseIn"
+                                             EasingType="Quartic"
+                                             To="0"
+                                             Duration="0:0:0.3" />
+        </animations:AnimationSet>
+    </animations:Explicit.Animations>
+
+    <StackPanel Padding="14"
+                Background="{ThemeResource ControlFillColorInputActiveBrush}"
+                CornerRadius="8"
+                Spacing="12">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="42" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="42" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Icon -->
+            <IconSourceElement Grid.Column="0"
+                               Width="36"
+                               Height="36"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Foreground="{x:Bind NotificationItem.NotificationColor, Mode=OneWay}"
+                               IconSource="{x:Bind NotificationItem.NotificationIcon, Mode=OneWay}" />
+
+            <!-- Title -->
+            <TextBlock Grid.Column="1"
+                       Height="36"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       Foreground="{x:Bind NotificationItem.NotificationColor, Mode=OneWay}"
+                       IsTextSelectionEnabled="True"
+                       Style="{ThemeResource SubtitleTextBlockStyle}"
+                       Text="{x:Bind NotificationItem.Title, Mode=OneWay}"
+                       TextWrapping="Wrap" />
+
+            <!-- Close button -->
+            <Button Grid.Column="2"
+                    Width="32"
+                    Height="32"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Click="OnCloseButtonClick"
+                    Style="{StaticResource ButtonTransparentStyle}">
+                <FontIcon FontSize="18" Glyph="&#xE711;" />
+            </Button>
+        </Grid>
+
+        <!-- Description -->
+        <Grid Visibility="{x:Bind IsStringWhiteSpaceOrEmpty(NotificationItem.Message), Mode=OneWay}">
+            <TextBlock HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       IsTextSelectionEnabled="True"
+                       Text="{x:Bind NotificationItem.Message, Mode=OneWay}"
+                       TextWrapping="Wrap" />
+        </Grid>
+
+        <!-- ProgressBar -->
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Foreground="{x:Bind NotificationItem.NotificationColor, Mode=OneWay}"
+                       IsTextSelectionEnabled="True"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       Text="{x:Bind NotificationItem.ProgressTitle, Mode=OneWay}"
+                       Visibility="{x:Bind IsStringWhiteSpaceOrEmpty(NotificationItem.ProgressTitle), Mode=OneWay}" />
+            <ProgressBar Grid.Row="1"
+                         HorizontalAlignment="Stretch"
+                         HorizontalContentAlignment="Stretch"
+                         IsIndeterminate="{x:Bind GetProgressBarState(NotificationItem.NotificationState, 'IsIndeterminate'), Mode=OneWay}"
+                         ShowError="{x:Bind GetProgressBarState(NotificationItem.NotificationState, 'ShowError'), Mode=OneWay}"
+                         ShowPaused="{x:Bind GetProgressBarState(NotificationItem.NotificationState, 'ShowPaused'), Mode=OneWay}"
+                         Value="{x:Bind NotificationItem.ProgressValue, Mode=OneWay}" />
+            <TextBlock Grid.Row="2"
+                       HorizontalAlignment="Left"
+                       IsTextSelectionEnabled="True"
+                       Text="{x:Bind NotificationItem.ProgressStatus, Mode=OneWay}"
+                       Visibility="{x:Bind IsStringWhiteSpaceOrEmpty(NotificationItem.ProgressStatus), Mode=OneWay}" />
+            <TextBlock Grid.Row="2"
+                       HorizontalAlignment="Right"
+                       IsTextSelectionEnabled="True"
+                       Text="{x:Bind NotificationItem.ProgressString, Mode=OneWay}"
+                       Visibility="{x:Bind IsStringWhiteSpaceOrEmpty(NotificationItem.ProgressString), Mode=OneWay}" />
+        </Grid>
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <ContentPresenter Content="{x:Bind NotificationItem.PrimaryActionButton, Mode=OneWay}" />
+            <ContentPresenter Content="{x:Bind NotificationItem.SecondaryActionButton, Mode=OneWay}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
